@@ -3,7 +3,8 @@ import { Cinzel } from "next/font/google";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ŁZA TATTOO & PIERCING | Tatuaże i piercing",
+  title: "className="text-[60px] md:text-[100px] font-bold tracking-wide">
+  ŁZA TATTOO & PIERCING
   description:
     "Profesjonalne studio tatuażu i piercingu w Lublinie. Tatuaże, piercing, rezerwacje przez Instagram i Booksy.",
 };

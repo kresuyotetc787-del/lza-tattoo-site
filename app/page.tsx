@@ -118,7 +118,7 @@ const booksyLinks: Record<string, string> = {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 lg:px-8">
           <div>
             <div className="text-lg uppercase tracking-[0.28em]">
-              LZA TATTOO & PIERCING
+              ŁZA TATTOO & PIERCING
             </div>
             <div className="text-[10px] uppercase tracking-[0.32em] text-black/45">
               Lublin • Tattoo Studio • Tattoo Artists
