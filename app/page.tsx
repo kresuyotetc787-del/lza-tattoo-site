@@ -156,7 +156,7 @@ const booksyLinks: Record<string, string> = {
         >
           <div className="border border-black/10 bg-[#efebe7] px-6 py-6 shadow-sm md:px-10 md:py-8">
             <h1 className="mb-4 text-center text-4xl uppercase tracking-wide md:mb-6 md:text-7xl">
-              LZA TATTOO&PIERCING
+              ŁZA TATTOO&PIERCING
             </h1>
 
             <div className="mx-auto max-w-5xl overflow-hidden border border-black/10 bg-white shadow-sm">
