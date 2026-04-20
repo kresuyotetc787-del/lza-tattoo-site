@@ -337,11 +337,11 @@ const booksyLinks: Record<string, string> = {
 />
                   
                   <a
-                    href="https://www.google.com/maps?q=LZA+Tattoo+Piercing+Lublin&hl=pl" target="_blank">
+                    href="https://maps.app.goo.gl/q6ZiNCrBhdhhpLMJ7"
                     target="_blank"
                     rel="noreferrer"
                     className="border-t border-black/10 bg-white px-5 py-4 text-center text-sm uppercase tracking-[0.24em] transition hover:bg-black hover:text-white"
-                  
+                  >
                     Otwórz w Google Maps
                   </a>
                 </div>
