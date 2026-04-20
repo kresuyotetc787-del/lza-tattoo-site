@@ -337,11 +337,11 @@ const booksyLinks: Record<string, string> = {
 />
                   
                   <a
-                    href="https://www.google.com/maps/search/?api=1&query=Prezydenta%20Gabriela%20Narutowicza%2022,%2020-004%20Lublin"
+                    href="https://www.google.com/maps?q=LZA+Tattoo+Piercing+Lublin&hl=pl" target="_blank">
                     target="_blank"
                     rel="noreferrer"
                     className="border-t border-black/10 bg-white px-5 py-4 text-center text-sm uppercase tracking-[0.24em] transition hover:bg-black hover:text-white"
-                  >
+                  
                     Otwórz w Google Maps
                   </a>
                 </div>
