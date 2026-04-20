@@ -365,7 +365,7 @@ const booksyLinks: Record<string, string> = {
 
                 <form
                   className="grid gap-4"
-                  onSubmit={(e) => {
+                  onSubmit={async (e) => {
                     e.preventDefault();
 
                     const form = e.currentTarget as HTMLFormElement & {
@@ -391,9 +391,22 @@ const booksyLinks: Record<string, string> = {
                       `Wiadomość: ${message}`,
                     ].join("\n");
 
-                    window.location.href = `mailto:lezkatattoo@gmail.com?subject=${encodeURIComponent(
-                      "Nowe zgłoszenie ze strony"
-                    )}&body=${encodeURIComponent(body)}`;
+                    await fetch("/api/contact", {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                          firstName,
+                           lastName,
+                           phone,
+                           email,
+                           message,
+                           }),
+                        });
+                        
+                      
+                    
                   }}
                 >
                   <div className="grid gap-4 md:grid-cols-2">
