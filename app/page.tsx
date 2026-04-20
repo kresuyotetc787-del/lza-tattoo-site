@@ -455,12 +455,12 @@ const booksyLinks: Record<string, string> = {
                     className="mt-1 bg-[#252b3a] px-6 py-4 text-sm uppercase tracking-[0.24em] text-white"
                   >
                     <div className="mt-6 space-y-4">
-  <label className="flex items-start gap-3 text-sm leading-6 text-neutral-700">
+  <label className="flex items-start gap-3 text-sm leading-6 text-white">
     <input
       type="checkbox"
       name="privacyConsent"
       required
-      className="mt-1 h-4 w-4 rounded border-neutral-400 text-neutral-900 focus:ring-neutral-900"
+      className="mt-1 h-4 w-4 rounded border-white text-neutral-900 focus:ring-neutral-900"
     />
     <span>
       Zapoznałem/am się z{" "}
@@ -477,7 +477,7 @@ const booksyLinks: Record<string, string> = {
     </span>
   </label>
 
-  <p className="text-xs leading-5 text-neutral-500">
+  <p className="text-xs leading-5 text-white/70">
     Administratorem danych jest ŁZA TATTOO & PIERCING. Dane podane w formularzu
     będą przetwarzane wyłącznie w celu odpowiedzi na wiadomość i kontaktu w
     sprawie rezerwacji lub zapytania.
