@@ -448,22 +448,7 @@ const booksyLinks: Record<string, string> = {
                     required
                   />
 
-                  <label className="mt-2 flex items-start gap-3 text-sm text-black/70">
-                    <input
-                      type="checkbox"
-                      name="consent"
-                      required
-                      className="mt-1 h-4 w-4 border-black/20"
-                    />
-                    <span>
-                      Zapoznałem/am się z{" "}
-                      <a href="#" className="underline">
-                        polityką prywatności
-                      </a>{" "}
-                      i wyrażam zgodę na przetwarzanie moich danych w celu
-                      kontaktu.
-                    </span>
-                  </label>
+                  
 
                   <button
                     type="submit"
