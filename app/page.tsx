@@ -370,129 +370,127 @@ const booksyLinks: Record<string, string> = {
                 </div>
 
                 <form
-                  className="grid gap-4"
-                  onSubmit={async (e) => {
-                    e.preventDefault();
+  className="grid gap-4"
+  onSubmit={async (e) => {
+    e.preventDefault();
 
-                    const form = e.currentTarget as HTMLFormElement & {
-                      firstName: { value: string };
-                      lastName: { value: string };
-                      phone: { value: string };
-                      email: { value: string };
-                      message: { value: string };
-                    };
+    const form = e.currentTarget as HTMLFormElement & {
+      firstName: { value: string };
+      lastName: { value: string };
+      phone: { value: string };
+      email: { value: string };
+      message: { value: string };
+    };
 
-                    const firstName = form.firstName.value.trim();
-                    const lastName = form.lastName.value.trim();
-                    const phone = form.phone.value.trim();
-                    const email = form.email.value.trim();
-                    const message = form.message.value.trim();
+    const firstName = form.firstName.value.trim();
+    const lastName = form.lastName.value.trim();
+    const phone = form.phone.value.trim();
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
 
-                    const body = [
-                      "Nowe zgłoszenie:",
-                      `Imię: ${firstName}`,
-                      `Nazwisko: ${lastName}`,
-                      `Telefon: ${phone}`,
-                      `E-mail: ${email}`,
-                      `Wiadomość: ${message}`,
-                    ].join("\n");
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        firstName,
+        lastName,
+        phone,
+        email,
+        message,
+      }),
+    });
 
-                    await fetch("/api/contact", {
-                      method: "POST",
-                      headers: {
-                        "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({
-                          firstName,
-                           lastName,
-                           phone,
-                           email,
-                           message,
-                           }),
-                        });
-                        
-                      
-                    
-                  }}
-                >
-                  <div className="grid gap-4 md:grid-cols-2">
-                    <input
-                      name="firstName"
-                      className="border border-black/10 bg-white px-4 py-3 outline-none placeholder:text-black/35"
-                      placeholder="Imię"
-                      required
-                    />
-                    <input
-                      name="lastName"
-                      className="border border-black/10 bg-white px-4 py-3 outline-none placeholder:text-black/35"
-                      placeholder="Nazwisko"
-                      required
-                    />
-                  </div>
+    const result = await res.json();
 
-                  <div className="grid gap-4 md:grid-cols-2">
-                    <input
-                      name="phone"
-                      type="tel"
-                      className="border border-black/10 bg-white px-4 py-3 outline-none placeholder:text-black/35"
-                      placeholder="Telefon"
-                      required
-                    />
-                    <input
-                      name="email"
-                      type="email"
-                      className="border border-black/10 bg-white px-4 py-3 outline-none placeholder:text-black/35"
-                      placeholder="Adres e-mail"
-                      required
-                    />
-                  </div>
-
-                  <textarea
-                    name="message"
-                    className="min-h-[160px] border border-black/10 bg-white px-4 py-3 outline-none placeholder:text-black/35"
-                    placeholder="Wiadomość"
-                    required
-                  />
-
-                  
-
-                  <button
-                    type="submit"
-                    className="mt-1 bg-[#252b3a] px-6 py-4 text-sm uppercase tracking-[0.24em] text-white"
-                  >
-                    <div className="mt-6 space-y-4">
-  <label className="flex items-start gap-3 text-sm leading-6 text-white">
+    if (result.ok) {
+      alert("Wiadomość została wysłana.");
+      form.reset();
+    } else {
+      alert("Błąd podczas wysyłania wiadomości.");
+    }
+  }}
+>
+  <div className="grid gap-4 md:grid-cols-2">
     <input
-      type="checkbox"
-      name="privacyConsent"
+      name="firstName"
+      className="border border-black/10 bg-white px-4 py-3 outline-none placeholder:text-black/35"
+      placeholder="Imię"
       required
-      className="mt-1 h-4 w-4 rounded border-white text-neutral-900 focus:ring-neutral-900"
     />
-    <span>
-      Zapoznałem/am się z{" "}
-      <a
-        href="/polityka-prywatnosci"
-        className="underline underline-offset-2 hover:opacity-70"
-        target="_blank"
-        rel="noreferrer"
-      >
-        Polityką prywatności
-      </a>{" "}
-      i wyrażam zgodę na przetwarzanie moich danych osobowych w celu obsługi
-      zapytania przesłanego przez formularz kontaktowy.
-    </span>
-  </label>
+    <input
+      name="lastName"
+      className="border border-black/10 bg-white px-4 py-3 outline-none placeholder:text-black/35"
+      placeholder="Nazwisko"
+      required
+    />
+  </div>
 
-  <p className="text-xs leading-5 text-white/70">
-    Administratorem danych jest ŁZA TATTOO & PIERCING. Dane podane w formularzu
-    będą przetwarzane wyłącznie w celu odpowiedzi na wiadomość i kontaktu w
-    sprawie rezerwacji lub zapytania.
-  </p>
-</div>
-                    Wyślij zgłoszenie
-                  </button>
-                </form>
-              </div>
+  <div className="grid gap-4 md:grid-cols-2">
+    <input
+      name="phone"
+      type="tel"
+      className="border border-black/10 bg-white px-4 py-3 outline-none placeholder:text-black/35"
+      placeholder="Telefon"
+      required
+    />
+    <input
+      name="email"
+      type="email"
+      className="border border-black/10 bg-white px-4 py-3 outline-none placeholder:text-black/35"
+      placeholder="Adres e-mail"
+      required
+    />
+  </div>
+
+  <textarea
+    name="message"
+    className="min-h-[160px] border border-black/10 bg-white px-4 py-3 outline-none placeholder:text-black/35"
+    placeholder="Wiadomość"
+    required
+  />
+
+  <div className="mt-1 bg-[#252b3a] px-6 py-6 text-white">
+    <div className="space-y-4">
+      <label className="flex items-start gap-3 text-sm leading-6 text-white">
+        <input
+          type="checkbox"
+          name="privacyConsent"
+          required
+          className="mt-1 h-4 w-4 rounded border-white text-neutral-900 focus:ring-neutral-900"
+        />
+        <span>
+          Zapoznałem/am się z{" "}
+          <a
+            href="/polityka-prywatnosci"
+            className="underline underline-offset-2 hover:opacity-70"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Polityką prywatności
+          </a>{" "}
+          i wyrażam zgodę na przetwarzanie moich danych osobowych w celu obsługi
+          zapytania przesłanego przez formularz kontaktowy.
+        </span>
+      </label>
+
+      <p className="text-xs leading-5 text-white/70">
+        Administratorem danych jest ŁZA TATTOO & PIERCING. Dane podane w formularzu
+        będą przetwarzane wyłącznie w celu odpowiedzi na wiadomość i kontaktu w
+        sprawie rezerwacji lub zapytania.
+      </p>
+    </div>
+
+    <button
+      type="submit"
+      className="mt-6 w-full text-center text-sm uppercase tracking-[0.24em] text-white"
+    >
+      Wyślij zgłoszenie
+    </button>
+  </div>
+</form>
+ </div>
             </div>
           </div>
         </section>
