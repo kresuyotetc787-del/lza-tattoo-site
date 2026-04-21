@@ -328,11 +328,13 @@ const booksyLinks: Record<string, string> = {
               <div className="overflow-hidden border-2 border-black bg-[#f5f2ee] shadow-sm">
                 <div className="flex h-full min-h-[340px] flex-col">
                   <iframe
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2497.593806345326!2d22.559253599999995!3d51.2449753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47225746cffe1d15%3A0x873f11ee81a138f7!2s%C5%81za%20Tattoo%20%26%20Piercing!5e0!3m2!1suk!2sua!4v1776261339916!5m2!1suk!2sua"
+  src={`https://www.google.com/maps/embed/v1/place?key=TU_WSTAW_API_KEY&q=${encodeURIComponent(
+    "Łza Tattoo & Piercing, Prezydenta Gabriela Narutowicza 22, 20-004 Lublin, Poland"
+  )}&language=pl&region=PL&zoom=16`}
   className="w-full h-full"
   style={{ border: 0 }}
-  allowFullScreen
   loading="lazy"
+  allowFullScreen
   referrerPolicy="no-referrer-when-downgrade"
 />
                   
