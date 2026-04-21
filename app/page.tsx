@@ -35,11 +35,17 @@ const booksyLinks: Record<string, string> = {
   isCentered?: boolean;
 }) {
   return (
+    
     <div
+    
       className={`border border-black/10 bg-white p-5 shadow-sm ${
         isCentered ? "md:col-span-2 md:mx-auto md:max-w-md" : ""
+        
       }`}
     >
+      <div className="text-center text-lg uppercase mb-3">
+      {name === "piercinglbn" ? "Piercing LBN" : name}
+    </div>
       <div className="overflow-hidden border border-black">
         <img
           src={`/images/artists/${name}.jpg`}
