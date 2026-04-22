@@ -380,6 +380,7 @@ const booksyLinks: Record<string, string> = {
       phone: { value: string };
       email: { value: string };
       message: { value: string };
+      privacyConsent: { checked: boolean };
     };
 
     const firstName = form.firstName.value.trim();
@@ -387,28 +388,39 @@ const booksyLinks: Record<string, string> = {
     const phone = form.phone.value.trim();
     const email = form.email.value.trim();
     const message = form.message.value.trim();
+    const privacyConsent = form.privacyConsent.checked;
 
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        firstName,
-        lastName,
-        phone,
-        email,
-        message,
-      }),
-    });
+    if (!privacyConsent) {
+      alert("Zaznacz zgodę na przetwarzanie danych.");
+      return;
+    }
 
-    const result = await res.json();
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          phone,
+          email,
+          message,
+        }),
+      });
 
-    if (result.ok) {
-      alert("Wiadomość została wysłana.");
-      form.reset();
-    } else {
-      alert("Błąd podczas wysyłania wiadomości.");
+      const result = await res.json();
+
+      if (result.ok) {
+        alert("Wiadomość została wysłana.");
+        form.reset();
+      } else {
+        alert(result.error || "Błąd podczas wysyłania wiadomości.");
+      }
+    } catch (error) {
+      alert("Błąd połączenia z serwerem.");
+      console.error(error);
     }
   }}
 >
@@ -457,8 +469,8 @@ const booksyLinks: Record<string, string> = {
         <input
           type="checkbox"
           name="privacyConsent"
-          required
           className="mt-1 h-4 w-4 rounded border-white text-neutral-900 focus:ring-neutral-900"
+          required
         />
         <span>
           Zapoznałem/am się z{" "}
@@ -484,13 +496,13 @@ const booksyLinks: Record<string, string> = {
 
     <button
       type="submit"
-      className="mt-6 w-full text-center text-sm uppercase tracking-[0.24em] text-white"
+      className="mt-6 w-full border border-white/20 bg-transparent px-6 py-4 text-center text-sm uppercase tracking-[0.24em] text-white transition hover:bg-white hover:text-[#252b3a]"
     >
       Wyślij zgłoszenie
     </button>
   </div>
 </form>
- </div>
+</div>
             </div>
           </div>
         </section>
