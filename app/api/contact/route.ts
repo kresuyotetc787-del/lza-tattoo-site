@@ -9,7 +9,7 @@ export async function POST(req: Request) {
 
     if (!firstName || !lastName || !phone || !email || !message) {
       return NextResponse.json(
-        { ok: false, error: "Brak wymaganych danych." },
+        { ok: false, error: "Brak danych" },
         { status: 400 }
       );
     }
@@ -17,15 +17,13 @@ export async function POST(req: Request) {
     await resend.emails.send({
       from: "onboarding@resend.dev",
       to: "lezkatattoo@gmail.com",
-      subject: "Nowe zgłoszenie ze strony",
+      subject: "Nowe zgłoszenie",
       replyTo: email,
       text: `
-Nowe zgłoszenie:
-
 Imię: ${firstName}
 Nazwisko: ${lastName}
 Telefon: ${phone}
-E-mail: ${email}
+Email: ${email}
 
 Wiadomość:
 ${message}
@@ -33,10 +31,10 @@ ${message}
     });
 
     return NextResponse.json({ ok: true });
-  } catch (error) {
-    console.error(error);
+  } catch (err) {
+    console.error(err);
     return NextResponse.json(
-      { ok: false, error: "Nie udało się wysłać wiadomości." },
+      { ok: false, error: "Błąd serwera" },
       { status: 500 }
     );
   }
