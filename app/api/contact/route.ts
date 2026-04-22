@@ -19,15 +19,13 @@ export async function POST(req: Request) {
       to: "lezkatattoo@gmail.com",
       subject: "Nowe zgłoszenie",
       replyTo: email,
-      text: `
-Imię: ${firstName}
+      text: `Imię: ${firstName}
 Nazwisko: ${lastName}
 Telefon: ${phone}
 Email: ${email}
 
 Wiadomość:
-${message}
-      `,
+${message}`,
     });
 
     return NextResponse.json({ ok: true });
