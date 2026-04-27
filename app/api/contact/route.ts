@@ -15,7 +15,7 @@ export async function POST(req: Request) {
     }
 
     const result = await resend.emails.send({
-  from: "kontakt@lzatattoo.pl",
+  from: "onboarding@resend.dev",
   to: "lezkatattoo@gmail.com",
   subject: "Nowe zgłoszenie",
   replyTo: email,
