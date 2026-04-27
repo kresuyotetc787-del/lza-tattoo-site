@@ -15,18 +15,18 @@ export async function POST(req: Request) {
     }
 
     const result = await resend.emails.send({
-      from: "kontakt@lzatattoo.pl",
-      to: "lezkatattoo@gmail.com",
-      subject: "Nowe zgłoszenie",
-      replyTo: email,
-      text: `Imię: ${firstName}
+  from: "kontakt@lzatattoo.pl",
+  to: "lezkatattoo@gmail.com",
+  subject: "Nowe zgłoszenie",
+  replyTo: email,
+  text: `Imię: ${firstName}
 Nazwisko: ${lastName}
 Telefon: ${phone}
 Email: ${email}
 
 Wiadomość:
 ${message}`,
-    });
+});
 
     console.log("RESEND RESULT:", result);
 
