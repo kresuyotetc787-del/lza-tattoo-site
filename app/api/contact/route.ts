@@ -14,28 +14,41 @@ export async function POST(req: Request) {
       );
     }
 
+    if (!process.env.RESEND_API_KEY) {
+      return NextResponse.json(
+        { ok: false, error: "RESEND_API_KEY is missing" },
+        { status: 500 }
+      );
+    }
+
     const result = await resend.emails.send({
-  from: "onboarding@resend.dev",
-  to: "lezkatattoo@gmail.com",
-  subject: "Nowe zgłoszenie",
-  replyTo: email,
-  text: `Imię: ${firstName}
+      from: "onboarding@resend.dev",
+      to: "lezkatattoo@gmail.com",
+      subject: "Nowe zgłoszenie",
+      replyTo: email,
+      text: `Imię: ${firstName}
 Nazwisko: ${lastName}
 Telefon: ${phone}
 Email: ${email}
 
 Wiadomość:
 ${message}`,
-});
+    });
 
     console.log("RESEND RESULT:", result);
 
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({
+      ok: true,
+      result,
+    });
   } catch (err) {
     console.error("RESEND ERROR:", err);
 
     return NextResponse.json(
-      { ok: false, error: String(err) },
+      {
+        ok: false,
+        error: err instanceof Error ? err.message : String(err),
+      },
       { status: 500 }
     );
   }
