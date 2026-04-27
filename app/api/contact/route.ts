@@ -14,8 +14,8 @@ export async function POST(req: Request) {
       );
     }
 
-    await resend.emails.send({
-      from: "onboarding@resend.dev",
+    const result = await resend.emails.send({
+      from: "kontakt@lzatattoo.pl",
       to: "lezkatattoo@gmail.com",
       subject: "Nowe zgłoszenie",
       replyTo: email,
@@ -28,11 +28,14 @@ Wiadomość:
 ${message}`,
     });
 
+    console.log("RESEND RESULT:", result);
+
     return NextResponse.json({ ok: true });
   } catch (err) {
-    console.error(err);
+    console.error("RESEND ERROR:", err);
+
     return NextResponse.json(
-      { ok: false, error: "Błąd serwera" },
+      { ok: false, error: String(err) },
       { status: 500 }
     );
   }
