@@ -9,8 +9,30 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "ŁZA TATTOO & PIERCING | Tatuaże i piercing",
-  description: "Profesjonalne studio tatuażu i piercingu w Lublinie.",
+  metadataBase: new URL("https://lzatattoo.pl"),
+  title: "Tatuaż i piercing Lublin - Studio ŁZA TATTOO & PIERCING",
+  description:
+    "Studio tatuażu i piercingu w Lublinie. Indywidualne projekty, sterylne warunki i doświadczony zespół artystów. Umów konsultację - ul. Narutowicza 22.",
+  keywords: [
+    "tatuaż lublin",
+    "studio tatuażu lublin",
+    "piercing lublin",
+    "studio piercingu lublin",
+    "tatuażysta lublin",
+    "piercer lublin",
+    "salon tatuażu lublin",
+  ],
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Tatuaż i piercing Lublin - Studio ŁZA TATTOO & PIERCING",
+    description:
+      "Studio tatuażu i piercingu w Lublinie. Indywidualne projekty, sterylne warunki i doświadczony zespół artystów.",
+    url: "https://lzatattoo.pl",
+    siteName: "ŁZA TATTOO & PIERCING",
+    locale: "pl_PL",
+    type: "website",
+  },
+  robots: { index: true, follow: true },
   verification: {
     google: "2lfduOL1KPtVoA9w9qJgf7JT2vE08Iz2nj",
   },

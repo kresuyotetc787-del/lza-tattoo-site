@@ -1,4 +1,40 @@
 "use client";
+import Link from "next/link";
+import SiteHeader from "./components/SiteHeader";
+import SiteFooter from "./components/SiteFooter";
+import JsonLd, { faqSchema, studioSchema } from "./components/JsonLd";
+
+const homeFaq = [
+  {
+    q: "Ile kosztuje tatuaż w Lublinie?",
+    a: "Wycena zależy od rozmiaru wzoru, techniki i czasu pracy artysty. Dokładną cenę ustalamy podczas konsultacji, na której omawiamy projekt - napisz do nas przez formularz albo zadzwoń, a przedstawimy widełki dla Twojego pomysłu.",
+  },
+  {
+    q: "Czy trzeba się umawiać wcześniej?",
+    a: "Tak, pracujemy na umówione wizyty. Dzięki temu każdy klient ma zarezerwowany czas bez pośpiechu. Pracujemy od poniedziałku do piątku w godzinach 9:00-17:00 oraz w soboty 9:00-15:00, a w uzasadnionych przypadkach umawiamy się także poza tymi godzinami.",
+  },
+  {
+    q: "Czy studio pracuje w sterylnych warunkach?",
+    a: "Tak. Do każdego zabiegu - zarówno tatuażu, jak i piercingu - używamy jednorazowego, sterylnego sprzętu, a stanowisko przygotowujemy zgodnie z zasadami higieny.",
+  },
+  {
+    q: "Jaki piercing wykonujecie?",
+    a: "Wykonujemy przekłuwanie uszu (płatek i chrząstka - helix, tragus i inne warianty), nosa, pępka, brwi i języka, a także inne przekłucia dobierane indywidualnie podczas rozmowy.",
+  },
+  {
+    q: "Czy robicie cover-up i poprawki starych tatuaży?",
+    a: "Tak, zajmujemy się zarówno przykryciem starego tatuażu nowym projektem, jak i odświeżeniem koloru czy konturu istniejącego wzoru. Napisz do nas i dołącz zdjęcie - ocenimy, co da się zrobić.",
+  },
+  {
+    q: "Jak długo goi się tatuaż i piercing?",
+    a: "Powierzchowne gojenie tatuażu trwa zwykle 2-3 tygodnie, a pełna regeneracja skóry nawet do 2 miesięcy. Piercing płatka ucha goi się 6-8 tygodni, chrząstki i pępka znacznie dłużej. Szczegóły opisujemy na blogu.",
+  },
+  {
+    q: "Gdzie znajduje się studio?",
+    a: "Przy ul. Prezydenta Gabriela Narutowicza 22 w Lublinie (20-004), w centrum miasta - z łatwym dojazdem i parkingiem w okolicy.",
+  },
+];
+
 export default function Home() {
   const heroImage = "/images/studio-main.jpg";
 
@@ -120,40 +156,7 @@ const booksyLinks: Record<string, string> = {
         html { scroll-behavior: smooth; }
       `}</style>
 
-      <header className="sticky top-0 z-50 border-b border-black/10 bg-[#f4f1ed]/95 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 lg:px-8">
-          <div>
-            <div className="text-lg uppercase tracking-[0.28em]">
-              ŁZA TATTOO & PIERCING
-            </div>
-            <div className="text-[10px] uppercase tracking-[0.32em] text-black/45">
-              Lublin • Tattoo Studio • Tattoo Artists
-            </div>
-          </div>
-
-          <nav className="hidden gap-8 text-[11px] uppercase tracking-[0.24em] md:flex">
-            <a href="#home" className="hover:opacity-60">
-              Home
-            </a>
-            <a href="#studio" className="hover:opacity-60">
-              Studio
-            </a>
-            <a href="#artists" className="hover:opacity-60">
-              Artists
-            </a>
-            <a href="#contact" className="hover:opacity-60">
-              Contact
-            </a>
-          </nav>
-
-          <a
-            href="#booking"
-            className="border border-black/10 bg-white px-4 py-2 text-[11px] uppercase tracking-[0.24em] shadow-sm transition hover:-translate-y-0.5"
-          >
-            Booking
-          </a>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main>
         <section
@@ -161,8 +164,13 @@ const booksyLinks: Record<string, string> = {
           className="mx-auto max-w-6xl px-4 pb-8 pt-4 lg:px-8 lg:pb-12 lg:pt-6"
         >
           <div className="border border-black/10 bg-[#efebe7] px-6 py-6 shadow-sm md:px-10 md:py-8">
-            <h1 className="mb-4 text-center text-4xl uppercase tracking-wide md:mb-6 md:text-7xl">
-              ŁZA TATTOO&PIERCING
+            <h1 className="mb-4 text-center md:mb-6">
+              <span className="block text-4xl uppercase tracking-wide md:text-7xl">
+                ŁZA TATTOO&PIERCING
+              </span>
+              <span className="mt-3 block text-lg uppercase tracking-[0.24em] text-black/60 md:mt-4 md:text-2xl">
+                Studio tatuażu i piercingu w Lublinie
+              </span>
             </h1>
 
             <div className="mx-auto max-w-5xl overflow-hidden border border-black/10 bg-white shadow-sm">
@@ -201,7 +209,12 @@ const booksyLinks: Record<string, string> = {
           <div className="border border-black/5 bg-[#f4f1ed] px-6 py-6 shadow-sm md:px-8 md:py-8">
             <div className="grid gap-10 md:grid-cols-2 items-stretch">
               <div className="rounded-[40px] bg-white/90 px-10 py-10 flex flex-col justify-center h-full">
-                <h2 className="mb-6 text-5xl md:text-7xl">O nas</h2>
+                <h2 className="mb-6 text-5xl md:text-7xl">
+                  O nas
+                  <span className="mt-3 block text-base uppercase tracking-[0.2em] text-black/55 md:text-xl">
+                    Salon tatuażu i piercingu w centrum Lublina
+                  </span>
+                </h2>
                 
                   Łza Tattoo&amp;Piercing to studio, w którym pasja do sztuki
                   spotyka się z profesjonalizmem i dbałością o każdy detal.
@@ -250,11 +263,74 @@ const booksyLinks: Record<string, string> = {
         </section>
 
         <section
+          id="oferta"
+          className="mx-auto max-w-6xl px-4 pb-10 lg:px-8 lg:pb-14"
+        >
+          <div className="border border-black/10 bg-[#f4f1ed] px-6 py-6 shadow-sm md:px-8 md:py-8">
+            <h2 className="mb-6 text-4xl uppercase md:text-6xl">
+              Oferta
+              <span className="mt-3 block text-base tracking-[0.2em] text-black/55 md:text-xl">
+                Tatuaż i piercing w Lublinie
+              </span>
+            </h2>
+
+            <div className="grid gap-6 md:grid-cols-2">
+              <Link
+                href="/tatuaz-lublin"
+                className="group flex flex-col border border-black/10 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 md:p-8"
+              >
+                <h3 className="text-2xl uppercase tracking-wide md:text-3xl">
+                  Tatuaż Lublin
+                </h3>
+                <p className="mt-4 flex-1 text-base leading-8 text-black/75">
+                  Minimalistyczny, kolorowy, czarno-biały, japoński,
+                  geometryczny i realistyczny. Robimy też cover-up i poprawki
+                  starych tatuaży. Każdy projekt omawiamy indywidualnie na
+                  konsultacji.
+                </p>
+                <span className="mt-6 text-[11px] uppercase tracking-[0.24em] underline underline-offset-4">
+                  Zobacz ofertę tatuażu
+                </span>
+              </Link>
+
+              <Link
+                href="/piercing-lublin"
+                className="group flex flex-col border border-black/10 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 md:p-8"
+              >
+                <h3 className="text-2xl uppercase tracking-wide md:text-3xl">
+                  Piercing Lublin
+                </h3>
+                <p className="mt-4 flex-1 text-base leading-8 text-black/75">
+                  Przekłuwanie uszu (płatek i chrząstka - helix, tragus), nosa,
+                  pępka, brwi i języka. Sterylne warunki, jednorazowy sprzęt i
+                  jasne zasady pielęgnacji po zabiegu.
+                </p>
+                <span className="mt-6 text-[11px] uppercase tracking-[0.24em] underline underline-offset-4">
+                  Zobacz ofertę piercingu
+                </span>
+              </Link>
+            </div>
+
+            <Link
+              href="/blog"
+              className="mt-6 block border border-black/10 bg-white px-6 py-5 text-center text-[11px] uppercase tracking-[0.24em] shadow-sm transition hover:-translate-y-0.5"
+            >
+              Blog — poradniki o gojeniu i pielęgnacji
+            </Link>
+          </div>
+        </section>
+
+        <section
           id="artists"
           className="mx-auto max-w-6xl px-4 pb-16 lg:px-8"
         >
           <div className="border border-black/10 bg-[#f4f1ed] px-6 py-6 shadow-sm md:px-8 md:py-8">
-            <h2 className="mb-8 text-4xl md:text-6xl uppercase">Artists</h2>
+            <h2 className="mb-8 text-4xl md:text-6xl uppercase">
+              Artists
+              <span className="mt-3 block text-base tracking-[0.2em] text-black/55 md:text-xl">
+                Tatuażyści i piercer w Lublinie
+              </span>
+            </h2>
 
             <div className="grid gap-6 md:grid-cols-2">
               {artists.map((name, index) => {
@@ -273,13 +349,43 @@ const booksyLinks: Record<string, string> = {
         </section>
 
         <section
+          id="faq"
+          className="mx-auto max-w-6xl px-4 pb-16 lg:px-8"
+        >
+          <div className="border border-black/10 bg-[#f4f1ed] px-6 py-6 shadow-sm md:px-8 md:py-8">
+            <h2 className="mb-8 text-4xl uppercase md:text-6xl">
+              FAQ
+              <span className="mt-3 block text-base tracking-[0.2em] text-black/55 md:text-xl">
+                Najczęstsze pytania o tatuaż i piercing w Lublinie
+              </span>
+            </h2>
+
+            <dl className="divide-y divide-black/10 border-y border-black/10">
+              {homeFaq.map((item) => (
+                <div key={item.q} className="py-6">
+                  <dt className="text-xl leading-8 md:text-2xl">{item.q}</dt>
+                  <dd className="mt-3 max-w-3xl text-base leading-8 text-black/75">
+                    {item.a}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
+
+        <section
           id="contact"
           className="mx-auto max-w-6xl px-4 pb-16 lg:px-8 lg:pb-20"
         >
           <div className="border border-black/10 bg-white shadow-sm">
             <div className="grid gap-8 px-6 py-6 md:grid-cols-[1fr_1.05fr] md:px-8 md:py-8">
               <div>
-                <h2 className="mb-4 text-5xl md:text-7xl">Kontakt</h2>
+                <h2 className="mb-4 text-5xl md:text-7xl">
+                  Kontakt
+                  <span className="mt-3 block text-base uppercase tracking-[0.2em] text-black/55 md:text-xl">
+                    Studio tatuażu i piercingu Lublin
+                  </span>
+                </h2>
                 <div className="space-y-5 text-lg leading-relaxed">
                   <div>
                     <div>Prezydenta Gabriela</div>
@@ -507,6 +613,10 @@ const booksyLinks: Record<string, string> = {
           </div>
         </section>
       </main>
+
+      <SiteFooter />
+
+      <JsonLd data={[studioSchema, faqSchema(homeFaq)]} />
     </div>
   );
 }
