@@ -3,6 +3,8 @@ import pielegnacjaPiercinguUcho from "./posts/pielegnacja-piercingu-ucho";
 import pielegnacjaTatuazu from "./posts/pielegnacja-tatuazu";
 import gojeniePiercinguPepka from "./posts/gojenie-piercingu-pepka";
 import gojenieTatuazu from "./posts/gojenie-tatuazu";
+import przeciwwskazaniaDoTatuazu from "./posts/przeciwwskazania-do-tatuazu";
+import czyPiercingBoli from "./posts/czy-piercing-boli";
 
 /**
  * JAK DODAĆ NOWY WPIS
@@ -15,7 +17,9 @@ import gojenieTatuazu from "./posts/gojenie-tatuazu";
  * Wpis z datą w przyszłości leży w repozytorium, ale NIE jest widoczny
  * na stronie ani w mapie strony do nadejścia tej daty. Nie trzeba niczego
  * wdrażać ponownie - strony bloga odświeżają się same co godzinę
- * (`export const revalidate = 3600` w app/blog/page.tsx i app/blog/[slug]/page.tsx).
+ * (`export const revalidate = 3600` w app/blog/page.tsx i app/blog/[slug]/page.tsx),
+ * a dodatkowo codziennie tuż po północy UTC cron z vercel.json wywołuje
+ * /api/revalidate, żeby wpis wszedł punktualnie w dniu publikacji.
  *
  * Przykład publikacji co tydzień w poniedziałki:
  *   publishedAt: "2026-08-17"
@@ -30,6 +34,8 @@ const allPosts: Post[] = [
   pielegnacjaTatuazu,
   gojeniePiercinguPepka,
   gojenieTatuazu,
+  przeciwwskazaniaDoTatuazu,
+  czyPiercingBoli,
 ];
 
 function isPublished(post: Post, now: number): boolean {

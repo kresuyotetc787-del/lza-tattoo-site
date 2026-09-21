@@ -33,6 +33,14 @@ export default function SiteFooter() {
               </Link>
             </li>
             <li>
+              <Link
+                href="/tatuaz-piercing-lublin-okolice"
+                className="hover:opacity-60"
+              >
+                Okolice i dojazd
+              </Link>
+            </li>
+            <li>
               <Link href="/blog" className="hover:opacity-60">
                 Blog
               </Link>
