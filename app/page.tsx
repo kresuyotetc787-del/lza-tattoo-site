@@ -2,6 +2,7 @@
 import Link from "next/link";
 import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
+import LocationsMap from "./components/LocationsMap";
 import JsonLd, { faqSchema, studioSchema } from "./components/JsonLd";
 
 const homeFaq = [
@@ -317,6 +318,28 @@ const booksyLinks: Record<string, string> = {
             >
               Blog — poradniki o gojeniu i pielęgnacji
             </Link>
+          </div>
+        </section>
+
+        <section
+          id="lokalizacje"
+          className="mx-auto max-w-6xl px-4 pb-10 lg:px-8 lg:pb-14"
+        >
+          <div className="border border-black/10 bg-[#f4f1ed] px-6 py-6 shadow-sm md:px-8 md:py-8">
+            <h2 className="mb-6 text-4xl uppercase md:text-6xl">
+              Lokalizacje
+              <span className="mt-3 block text-base tracking-[0.2em] text-black/55 md:text-xl">
+                Studio w Lublinie, dojazd z całego regionu
+              </span>
+            </h2>
+            <p className="mb-6 max-w-3xl text-base leading-8 text-black/75">
+              Nasze studio ma jedną stałą lokalizację - w centrum Lublina - a
+              klienci regularnie dojeżdżają do nas ze Świdnika, Lubartowa,
+              Kraśnika, Chełma i Zamościa. Kliknij miejscowość na mapie lub na
+              liście, żeby zobaczyć dojazd i ofertę dopasowaną do Twojej
+              okolicy.
+            </p>
+            <LocationsMap />
           </div>
         </section>
 

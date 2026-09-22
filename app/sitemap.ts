@@ -24,6 +24,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    {
+      url: `${SITE_URL}/piercing-swidnik`,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${SITE_URL}/piercing-zamosc`,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${SITE_URL}/piercing-chelm`,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${SITE_URL}/piercing-krasnik`,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${SITE_URL}/piercing-lubartow`,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
     { url: `${SITE_URL}/blog`, changeFrequency: "weekly", priority: 0.7 },
     { url: `${SITE_URL}/polityka-prywatnosci`, priority: 0.1 },
     { url: `${SITE_URL}/polityka-cookies`, priority: 0.1 },
