@@ -131,10 +131,12 @@ export default function TatuazLublinPage() {
 
       <ContactCta>
         <p>
-          Wycena tatuażu zależy od rozmiaru, techniki i czasu pracy artysty -
-          dokładne widełki cenowe ustalamy podczas konsultacji. Aby umówić
-          konsultację lub sesję, skorzystaj z formularza kontaktowego, zadzwoń
-          lub napisz do nas e-mail.
+          Nie prowadzimy stałego cennika tatuaży - każdy wzór wyceniamy
+          indywidualnie. Na cenę wpływa wielkość projektu, kolorystyka, stopień
+          skomplikowania i szczegółowości wzoru oraz miejsce na ciele, w którym
+          ma zostać wykonany. Dokładne widełki podajemy podczas konsultacji: aby
+          ją umówić, skorzystaj z formularza kontaktowego, zadzwoń lub napisz do
+          nas e-mail.
         </p>
         <p className="mt-4">
           Odwiedź nas przy ul. Prezydenta Gabriela Narutowicza 22 w Lublinie i

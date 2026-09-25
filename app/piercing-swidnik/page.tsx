@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import ContentBlocks from "../components/ContentBlocks";
 import ContactCta from "../components/ContactCta";
+import BooksyCta from "../components/BooksyCta";
 import PageShell from "../components/PageShell";
 import JsonLd, { SITE_URL, studioSchema } from "../components/JsonLd";
 import { postInline } from "../lib/blog";
@@ -100,10 +101,12 @@ export default function PiercingSwidnikPage() {
         Umów wizytę ze Świdnika
       </h2>
 
+      <BooksyCta />
+
       <ContactCta>
         <p>
-          Cena zabiegu zależy od rodzaju przekłucia i wybranej biżuterii -
-          dokładną wycenę podamy podczas rozmowy. Sprawdź też naszą{" "}
+          Cenę każdego zabiegu widać przy wybranej usłudze w Booksy, a jeśli nie
+          wiesz, co wybrać - podpowiemy przez telefon. Sprawdź też naszą{" "}
           <Link
             href="/piercing-lublin"
             className="underline underline-offset-4 hover:opacity-60"
