@@ -4,11 +4,20 @@ import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
 import LocationsMap from "./components/LocationsMap";
 import JsonLd, { faqSchema, studioSchema } from "./components/JsonLd";
+import { BOOKSY_SHORT_LABEL, BOOKSY_URL } from "./lib/booksy";
 
 const homeFaq = [
   {
     q: "Ile kosztuje tatuaż w Lublinie?",
-    a: "Wycena zależy od rozmiaru wzoru, techniki i czasu pracy artysty. Dokładną cenę ustalamy podczas konsultacji, na której omawiamy projekt - napisz do nas przez formularz albo zadzwoń, a przedstawimy widełki dla Twojego pomysłu.",
+    a: "Nie mamy stałego cennika tatuaży - każdy wzór wyceniamy indywidualnie. Na cenę wpływa wielkość projektu, kolorystyka, stopień skomplikowania i szczegółowości wzoru oraz miejsce na ciele, w którym ma być wykonany. Dokładną wycenę ustalamy na konsultacji - napisz do nas przez formularz albo zadzwoń, a przedstawimy widełki dla Twojego pomysłu.",
+  },
+  {
+    q: "Jak zarezerwować termin na piercing?",
+    a: `Terminy na piercing prowadzimy w Booksy (${BOOKSY_SHORT_LABEL}) - w kalendarzu widzisz wolne godziny i od razu rezerwujesz wizytę, o dowolnej porze. Cały proces opisaliśmy na stronie Rezerwacja piercingu. Możesz też po prostu zadzwonić pod numer 733 625 594.`,
+  },
+  {
+    q: "Ile kosztuje piercing?",
+    a: `Aktualny cennik piercingu znajdziesz przy poszczególnych usługach w Booksy (${BOOKSY_SHORT_LABEL}) - cena zależy od rodzaju przekłucia i wybranej biżuterii. Jeśli nie wiesz, co wybrać, napisz lub zadzwoń, a doradzimy przed rezerwacją.`,
   },
   {
     q: "Czy trzeba się umawiać wcześniej?",
@@ -46,12 +55,6 @@ export default function Home() {
     "/images/studio4.jpg",
   ];
   const booksyArtists = ["piercinglbn", "dziurikikarolki", "dziurkikarolki"];
-
-const booksyLinks: Record<string, string> = {
-  piercinglbn: "https://piercinglbn.booksy.com",
-  dziurikikarolki: "https://piercinglbn.booksy.com",
-};
-
 
   const artists = [
     "piercinglbn",
@@ -119,7 +122,7 @@ const booksyLinks: Record<string, string> = {
 
   {booksyArtists.includes(name) && (
     <a
-      href="https://piercinglbn.booksy.com"
+      href={BOOKSY_URL}
       target="_blank"
       rel="noreferrer"
       className="border border-l-0 border-black px-4 py-3 text-center text-lg font-semibold uppercase hover:bg-black hover:text-white"
@@ -310,6 +313,39 @@ const booksyLinks: Record<string, string> = {
                   Zobacz ofertę piercingu
                 </span>
               </Link>
+            </div>
+
+            <div className="mt-6 border border-black/10 bg-white p-6 shadow-sm md:p-8">
+              <h3 className="text-2xl uppercase tracking-wide md:text-3xl">
+                Rezerwacja piercingu online
+              </h3>
+              <p className="mt-4 text-base leading-8 text-black/75">
+                Terminy na piercing prowadzimy w Booksy — w kalendarzu widzisz
+                wolne godziny i aktualny cennik poszczególnych przekłuć.
+                Rezerwacja działa całą dobę. Tatuaże wyceniamy indywidualnie,
+                więc tutaj zaczynamy od konsultacji.
+              </p>
+
+              <div className="mt-6 flex flex-wrap gap-3">
+                <a
+                  href={BOOKSY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border border-black bg-[#252b3a] px-6 py-3 text-[11px] uppercase tracking-[0.24em] text-white transition hover:bg-black"
+                >
+                  Zarezerwuj w Booksy
+                </a>
+                <Link
+                  href="/rezerwacja-piercing"
+                  className="border border-black/10 bg-[#f4f1ed] px-6 py-3 text-[11px] uppercase tracking-[0.24em] shadow-sm transition hover:-translate-y-0.5"
+                >
+                  Jak działa rezerwacja i cennik
+                </Link>
+              </div>
+
+              <p className="mt-5 text-sm leading-7 text-black/55">
+                Nasz profil: {BOOKSY_SHORT_LABEL}
+              </p>
             </div>
 
             <Link

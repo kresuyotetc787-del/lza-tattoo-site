@@ -20,6 +20,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${SITE_URL}/rezerwacja-piercing`,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: `${SITE_URL}/tatuaz-piercing-lublin-okolice`,
       changeFrequency: "monthly",
       priority: 0.8,

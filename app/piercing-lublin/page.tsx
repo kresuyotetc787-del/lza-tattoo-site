@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import ContentBlocks from "../components/ContentBlocks";
 import ContactCta from "../components/ContactCta";
+import BooksyCta from "../components/BooksyCta";
 import PageShell from "../components/PageShell";
 import JsonLd, { SITE_URL, studioSchema } from "../components/JsonLd";
 import { postInline } from "../lib/blog";
+import { BOOKSY_SHORT_LABEL } from "../lib/booksy";
 import type { Block } from "../lib/blog/types";
 
 // Odświeżanie co godzinę, żeby odnośniki do zaplanowanych wpisów
@@ -112,13 +114,21 @@ export default function PiercingLublinPage() {
         Cennik i rezerwacja
       </h2>
 
+      <BooksyCta>
+        <p>
+          Terminy na piercing prowadzimy w Booksy ({BOOKSY_SHORT_LABEL}) - tam
+          znajdziesz też aktualny cennik poszczególnych przekłuć. Cena zależy od
+          rodzaju zabiegu i wybranej biżuterii, a kalendarz pokazuje wolne
+          godziny na żywo, więc rezerwację zrobisz samodzielnie w kilka chwil.
+        </p>
+      </BooksyCta>
+
       <ContactCta>
         <p>
-          Cena zabiegu zależy od rodzaju przekłucia i wybranej biżuterii -
-          dokładną wycenę podamy podczas rozmowy. Jeśli masz pytania dotyczące
-          konkretnego rodzaju piercingu lub chcesz umówić termin, napisz do nas
-          przez formularz kontaktowy, zadzwoń lub wyślij wiadomość e-mail -
-          odpowiemy i pomożemy dobrać dogodny termin.
+          Jeśli masz pytania dotyczące konkretnego rodzaju piercingu albo nie
+          wiesz, którą usługę wybrać w kalendarzu, napisz do nas przez formularz
+          kontaktowy, zadzwoń lub wyślij wiadomość e-mail - odpowiemy i pomożemy
+          dobrać zabieg oraz dogodny termin.
         </p>
         <p className="mt-4">
           Znajdziesz nas przy ul. Prezydenta Gabriela Narutowicza 22 w Lublinie.
