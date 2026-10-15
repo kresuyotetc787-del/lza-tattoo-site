@@ -16,7 +16,15 @@ import { NextResponse } from "next/server";
  */
 
 // Ścieżki zależne od tego, które wpisy są już opublikowane.
-const PATHS = ["/blog", "/tatuaz-lublin", "/piercing-lublin", "/sitemap.xml"];
+const PATHS = [
+  "/blog",
+  "/tatuaz-lublin",
+  "/piercing-lublin",
+  "/tatuaz-rekaw-lublin",
+  "/przekluwanie-uszu-lublin",
+  "/tatuaz-piercing-lublin-okolice",
+  "/sitemap.xml",
+];
 
 export async function GET(request: Request) {
   const secret = process.env.CRON_SECRET;

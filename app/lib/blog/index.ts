@@ -5,6 +5,10 @@ import gojeniePiercinguPepka from "./posts/gojenie-piercingu-pepka";
 import gojenieTatuazu from "./posts/gojenie-tatuazu";
 import przeciwwskazaniaDoTatuazu from "./posts/przeciwwskazania-do-tatuazu";
 import czyPiercingBoli from "./posts/czy-piercing-boli";
+import czyTatuazBoli from "./posts/czy-tatuaz-boli";
+import jakPrzygotowacSieDoTatuazu from "./posts/jak-przygotowac-sie-do-tatuazu";
+import pierwszyTatuazJakiWybrac from "./posts/pierwszy-tatuaz-jaki-wybrac";
+import ileKosztujeTatuaz from "./posts/ile-kosztuje-tatuaz";
 
 /**
  * JAK DODAĆ NOWY WPIS
@@ -36,6 +40,10 @@ const allPosts: Post[] = [
   gojenieTatuazu,
   przeciwwskazaniaDoTatuazu,
   czyPiercingBoli,
+  czyTatuazBoli,
+  jakPrzygotowacSieDoTatuazu,
+  pierwszyTatuazJakiWybrac,
+  ileKosztujeTatuaz,
 ];
 
 function isPublished(post: Post, now: number): boolean {

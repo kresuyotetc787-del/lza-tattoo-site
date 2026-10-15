@@ -69,6 +69,14 @@ const blocks: Block[] = [
   {
     type: "p",
     content: [
+      "Planujesz duży, wielosesyjny projekt obejmujący całą rękę? Rodzaje rękawów, etapy pracy i czas realizacji opisaliśmy osobno na stronie ",
+      { text: "tatuaż rękaw w Lublinie", href: "/tatuaz-rekaw-lublin" },
+      ".",
+    ],
+  },
+  {
+    type: "p",
+    content: [
       "Nie znalazłeś swojego stylu na liście? Napisz do nas i opisz swój pomysł - dobierzemy artystę, który najlepiej odpowiada Twojej wizji.",
     ],
   },

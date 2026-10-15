@@ -1,10 +1,27 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getPublishedPost } from "../lib/blog";
 import type { Block, Inline } from "../lib/blog/types";
 
 function renderInline(content: Inline[]) {
   return content.map((part, index) => {
     if (typeof part === "string") return part;
+
+    // Odnośnik do innego wpisu: linkujemy tylko wpis, który jest już publiczny.
+    if ("post" in part) {
+      if (!getPublishedPost(part.post)) return part.text;
+
+      return (
+        <Link
+          key={index}
+          href={`/blog/${part.post}`}
+          className="underline underline-offset-4 hover:opacity-60"
+        >
+          {part.text}
+        </Link>
+      );
+    }
+
     return (
       <Link
         key={index}

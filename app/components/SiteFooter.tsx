@@ -34,8 +34,16 @@ export default function SiteFooter() {
               </Link>
             </li>
             <li>
-              <Link href="/rezerwacja-piercing" className="hover:opacity-60">
-                Rezerwacja piercingu
+              <Link href="/tatuaz-rekaw-lublin" className="hover:opacity-60">
+                Tatuaż rękaw
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/przekluwanie-uszu-lublin"
+                className="hover:opacity-60"
+              >
+                Przekłuwanie uszu
               </Link>
             </li>
             <li>
