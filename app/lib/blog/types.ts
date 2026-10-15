@@ -1,5 +1,19 @@
-// Fragment tekstu w akapicie. Zwykły string albo link.
-export type Inline = string | { text: string; href: string };
+// Fragment tekstu w akapicie. Zwykły string, link albo odnośnik do wpisu.
+export type Inline =
+  | string
+  | { text: string; href: string }
+  /**
+   * Odnośnik do innego wpisu bloga, rozwiązywany dopiero przy renderze.
+   * Jeśli wskazany wpis czeka jeszcze na swoją datę publikacji, zostaje
+   * sam tekst zamiast linku - dzięki temu opublikowany wpis nigdy nie
+   * linkuje do strony, która zwraca jeszcze 404.
+   *
+   * Działa jak `postInline()` z app/lib/blog/index.ts, ale w tej formie mogą
+   * z tego korzystać same pliki wpisów. Gdyby importowały `postInline`,
+   * powstałby cykliczny import (index -> wpis -> index) i `allPosts` byłoby
+   * w TDZ w chwili, w której wpis buduje swoją treść.
+   */
+  | { text: string; post: string };
 
 export type Block =
   | { type: "p"; content: Inline[] }

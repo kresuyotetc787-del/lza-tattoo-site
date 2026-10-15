@@ -70,6 +70,17 @@ const blocks: Block[] = [
       "Przed każdym zabiegiem rozmawiamy o Twoich oczekiwaniach, doradzamy w kwestii umiejscowienia i rodzaju biżuterii, tak by efekt był nie tylko estetyczny, ale też wygodny na co dzień.",
     ],
   },
+  {
+    type: "p",
+    content: [
+      "Najczęściej wybieranym zabiegiem jest przekłuwanie uszu - płatek, helix, tragus i pozostałe warianty chrząstki, wraz z doborem kolczyka, opisaliśmy osobno na stronie ",
+      {
+        text: "przekłuwanie uszu w Lublinie",
+        href: "/przekluwanie-uszu-lublin",
+      },
+      ".",
+    ],
+  },
   { type: "h2", text: "Dlaczego warto wybrać nasze studio piercingu w Lublinie?" },
   {
     type: "ul",
