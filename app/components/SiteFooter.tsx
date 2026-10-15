@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BOOKSY_SHORT_LABEL, BOOKSY_URL } from "../lib/booksy";
 
 export default function SiteFooter() {
   return (
@@ -66,6 +67,16 @@ export default function SiteFooter() {
             Kontakt
           </div>
           <ul className="mt-4 space-y-2 text-sm">
+            <li>
+              <a
+                href={BOOKSY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-60"
+              >
+                Booksy - {BOOKSY_SHORT_LABEL}
+              </a>
+            </li>
             <li>
               <a href="tel:+48733625594" className="hover:opacity-60">
                 733 625 594

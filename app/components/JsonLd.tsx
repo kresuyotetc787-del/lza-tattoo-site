@@ -1,3 +1,5 @@
+import { BOOKSY_URL } from "../lib/booksy";
+
 export const SITE_URL = "https://lzatattoo.pl";
 
 export const studioSchema = {
@@ -32,7 +34,24 @@ export const studioSchema = {
   sameAs: [
     "https://www.instagram.com/lezkatattoo",
     "https://www.facebook.com/share/18T3hTypmi/",
+    BOOKSY_URL,
   ],
+  // Rezerwacje piercingu przyjmujemy w Booksy - dla Google to sygnał,
+  // gdzie klient może umówić wizytę.
+  potentialAction: {
+    "@type": "ReserveAction",
+    name: "Rezerwacja piercingu online",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: BOOKSY_URL,
+      inLanguage: "pl-PL",
+      actionPlatform: [
+        "https://schema.org/DesktopWebPlatform",
+        "https://schema.org/MobileWebPlatform",
+      ],
+    },
+    result: { "@type": "Reservation", name: "Termin na piercing" },
+  },
 };
 
 export function faqSchema(items: { q: string; a: string }[]) {

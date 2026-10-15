@@ -1,10 +1,12 @@
 import Link from "next/link";
+import { BOOKSY_URL } from "../lib/booksy";
 
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/#studio", label: "Studio" },
   { href: "/tatuaz-lublin", label: "Tatuaż" },
   { href: "/piercing-lublin", label: "Piercing" },
+  { href: "/rezerwacja-piercing", label: "Rezerwacja" },
   { href: "/blog", label: "Blog" },
   { href: "/#contact", label: "Kontakt" },
 ];
@@ -30,12 +32,16 @@ export default function SiteHeader() {
           ))}
         </nav>
 
-        <Link
-          href="/#booking"
+        {/* Rezerwacje piercingu prowadzimy w Booksy - przycisk prowadzi
+            wprost do kalendarza, a zakładka Rezerwacja tłumaczy cały proces. */}
+        <a
+          href={BOOKSY_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           className="shrink-0 border border-black/10 bg-white px-4 py-2 text-[11px] uppercase tracking-[0.24em] shadow-sm transition hover:-translate-y-0.5"
         >
-          Booking
-        </Link>
+          Booksy
+        </a>
       </div>
 
       <nav className="flex flex-wrap justify-center gap-x-5 gap-y-2 border-t border-black/10 px-4 pb-3 pt-2 text-[11px] uppercase tracking-[0.18em] lg:hidden">
