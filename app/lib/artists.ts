@@ -2,9 +2,8 @@
  * Zespół studia. Jedno źródło dla strony głównej, /artysci i galerii na
  * podstronach usług.
  *
- * DO UZUPEŁNIENIA PRZEZ STUDIO: `name` (imię artysty) i `bio` (doświadczenie,
- * od kiedy tatuuje/przekłuwa). Na razie są tylko nicki z Instagrama - imiona
- * i doświadczenie to dla Google ważny sygnał wiarygodności (E-E-A-T).
+ * `name` (imię) i `bio` (doświadczenie) są opcjonalne - jeśli puste, na
+ * stronie wyświetla się sam nick z Instagrama.
  * Style w `styles` opisaliśmy na podstawie prac widocznych w portfolio.
  */
 

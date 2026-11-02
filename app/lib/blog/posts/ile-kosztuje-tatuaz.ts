@@ -1,7 +1,4 @@
 import type { Block, Post } from "../types";
-import { DO_UZUPELNIENIA } from "../../do-uzupelnienia";
-
-const { konsultacjaTatuazuPlatna } = DO_UZUPELNIENIA;
 
 const faqItems = [
   {
@@ -16,9 +13,6 @@ const faqItems = [
     q: "Czy mogę poznać cenę przed wizytą?",
     a: "Tak. Napisz lub zadzwoń, opisz pomysł i dołącz inspiracje. Orientacyjne widełki podajemy po zapoznaniu się z projektem.",
   },
-  ...(konsultacjaTatuazuPlatna
-    ? [{ q: "Czy pierwsza konsultacja jest płatna?", a: konsultacjaTatuazuPlatna }]
-    : []),
   {
     q: "Czy cena obejmuje poprawki?",
     a: "To zależy od studia, dlatego zapytaj o zasady poprawek przed rezerwacją.",
@@ -138,14 +132,6 @@ const body: Block[] = [
     ],
   },
   { type: "faq", heading: "FAQ - koszt tatuażu", items: faqItems },
-  ...(konsultacjaTatuazuPlatna
-    ? []
-    : [
-        {
-          type: "todo",
-          text: "FAQ „Czy pierwsza konsultacja jest płatna?” pojawi się po wpisaniu odpowiedzi w app/lib/do-uzupelnienia.ts (konsultacjaTatuazuPlatna).",
-        } satisfies Block,
-      ]),
   { type: "h2", text: "Podsumowanie" },
   {
     type: "p",

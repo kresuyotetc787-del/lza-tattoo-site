@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import DoUzupelnienia from "./DoUzupelnienia";
 import { getPublishedPost } from "../lib/blog";
 import type { Block, Inline } from "../lib/blog/types";
 
@@ -143,9 +142,6 @@ export default function ContentBlocks({ blocks }: { blocks: Block[] }) {
                 )}
               </figure>
             );
-
-          case "todo":
-            return <DoUzupelnienia key={index}>{block.text}</DoUzupelnienia>;
 
           case "p":
             return (

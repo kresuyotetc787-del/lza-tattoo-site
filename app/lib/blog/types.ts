@@ -33,11 +33,6 @@ export type Block =
     }
   /** Siatka zdjęć prac ze studia (wpisy z app/lib/artists.ts). */
   | { type: "gallery"; items: Work[]; caption?: string }
-  /**
-   * Brakująca treść. Na produkcji się nie wyświetla, lokalnie i na podglądzie
-   * Vercel pokazuje żółtą ramkę - patrz app/lib/do-uzupelnienia.ts.
-   */
-  | { type: "todo"; text: string }
   | {
       type: "image";
       src: string;

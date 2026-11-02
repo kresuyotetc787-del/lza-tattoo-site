@@ -2,11 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import BooksyCta from "../components/BooksyCta";
 import ContactForm from "../components/ContactForm";
-import DoUzupelnienia from "../components/DoUzupelnienia";
 import PageShell from "../components/PageShell";
 import ReviewsBlock, { GOOGLE_MAPS_URL } from "../components/ReviewsBlock";
 import JsonLd, { SITE_URL, faqSchema, studioSchema } from "../components/JsonLd";
-import { DO_UZUPELNIENIA } from "../lib/do-uzupelnienia";
 
 export const metadata: Metadata = {
   title: "Kontakt - studio tatuażu Lublin | Łza Tattoo",
@@ -31,8 +29,6 @@ export const metadata: Metadata = {
   },
 };
 
-const { czasOdpowiedzi, dojazdPrzystanekParking } = DO_UZUPELNIENIA;
-
 const faqItems = [
   {
     q: "Czy na tatuaż muszę się wcześniej zapisać?",
@@ -42,14 +38,6 @@ const faqItems = [
     q: "Czy mogę przyjść na piercing bez rezerwacji?",
     a: "Zalecamy rezerwację online, bo w kalendarzu od razu widać wolne terminy.",
   },
-  ...(czasOdpowiedzi
-    ? [
-        {
-          q: "Jak szybko odpowiadacie na wiadomości?",
-          a: `${czasOdpowiedzi} Najszybciej złapiesz nas telefonicznie w godzinach otwarcia.`,
-        },
-      ]
-    : []),
   {
     q: "Czy mogę umówić się poza godzinami otwarcia?",
     a: "Często tak. Skontaktuj się z nami, a ustalimy dogodny termin.",
@@ -137,19 +125,13 @@ export default function RezerwacjaKontaktPage() {
 
       <p className={p}>
         Studio znajduje się w centrum, dlatego dojedziesz do nas komunikacją
-        miejską lub samochodem.{dojazdPrzystanekParking ? ` ${dojazdPrzystanekParking}` : ""}{" "}
+        miejską lub samochodem.{" "}
         Jeśli przyjeżdżasz spoza Lublina, zajrzyj na stronę{" "}
         <Link href="/tatuaz-piercing-lublin-okolice" className={link}>
           dojazd z okolic do studia
         </Link>
         .
       </p>
-      {!dojazdPrzystanekParking && (
-        <DoUzupelnienia>
-          najbliższy przystanek i parking - pole dojazdPrzystanekParking w
-          app/lib/do-uzupelnienia.ts.
-        </DoUzupelnienia>
-      )}
 
       <h2 className={h2}>Godziny otwarcia</h2>
       <p className={p}>Nasze godziny otwarcia to:</p>
@@ -230,12 +212,6 @@ export default function RezerwacjaKontaktPage() {
             </div>
           ))}
         </dl>
-        {!czasOdpowiedzi && (
-          <DoUzupelnienia>
-            typowy czas odpowiedzi na wiadomości (FAQ „Jak szybko
-            odpowiadacie?”) - pole czasOdpowiedzi w app/lib/do-uzupelnienia.ts.
-          </DoUzupelnienia>
-        )}
       </section>
 
       <ReviewsBlock />

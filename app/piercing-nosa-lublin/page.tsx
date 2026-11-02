@@ -2,13 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import BooksyCta from "../components/BooksyCta";
 import ContentBlocks from "../components/ContentBlocks";
-import DoUzupelnienia from "../components/DoUzupelnienia";
 import PageShell from "../components/PageShell";
 import PriceTable from "../components/PriceTable";
 import JsonLd, { SITE_URL, faqSchema, studioSchema } from "../components/JsonLd";
 import { work } from "../lib/artists";
 import { CENNIK_PIERCINGU } from "../lib/cennik";
-import { DO_UZUPELNIENIA } from "../lib/do-uzupelnienia";
 import type { Block } from "../lib/blog/types";
 
 export const revalidate = 3600;
@@ -104,7 +102,6 @@ const intro: Block[] = [
     type: "p",
     content: [
       "Do świeżego przekłucia wybieramy biżuterię z materiałów dobrych dla skóry, takich jak tytan implantacyjny. Zbyt krótki kolczyk uciska tkanki w czasie obrzęku, a zbyt długi zahacza o ubranie.",
-      ...(DO_UZUPELNIENIA.bizuteriaNos ? [" " + DO_UZUPELNIENIA.bizuteriaNos] : []),
       " Z czasem możesz zmienić kolczyk na bardziej ozdobny, ale dopiero po pełnym wygojeniu.",
     ],
   },
@@ -144,12 +141,6 @@ export default function PiercingNosaLublinPage() {
       lead="Myślisz o przekłuwaniu nosa w Lublinie? Kolczyk w nosie to jedna z najpopularniejszych ozdób, ale też przekłucie, w którym dużo zależy od miejsca, techniki i doboru biżuterii. W studiu Łza Tattoo & Piercing przy ul. Narutowicza 22 wykonujemy przekłucia nosa w sterylnych warunkach, na jednorazowym sprzęcie i z indywidualnym podejściem do anatomii."
     >
       <ContentBlocks blocks={intro} />
-      {!DO_UZUPELNIENIA.bizuteriaNos && (
-        <DoUzupelnienia>
-          dostępne rodzaje i materiały biżuterii do nosa w studiu - pole
-          bizuteriaNos w app/lib/do-uzupelnienia.ts.
-        </DoUzupelnienia>
-      )}
       <ContentBlocks blocks={care} />
 
       <h2 className="mt-12 text-2xl uppercase tracking-wide md:text-3xl">
