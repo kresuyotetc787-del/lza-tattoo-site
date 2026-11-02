@@ -23,6 +23,7 @@ export const STATIC_ROUTES: Route[] = [
   { path: "/artysci", priority: 0.8, changeFrequency: "monthly" },
   { path: "/tatuaz-rekaw-lublin", priority: 0.8, changeFrequency: "monthly" },
   { path: "/przekluwanie-uszu-lublin", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/piercing-nosa-lublin", priority: 0.8, changeFrequency: "monthly" },
   { path: "/tatuaz-piercing-lublin-okolice", priority: 0.8, changeFrequency: "monthly" },
   { path: "/tatuaz-swidnik", priority: 0.7, changeFrequency: "monthly" },
   { path: "/piercing-swidnik", priority: 0.7, changeFrequency: "monthly" },

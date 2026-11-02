@@ -2,109 +2,119 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import BooksyCta from "../components/BooksyCta";
 import ContactForm from "../components/ContactForm";
+import DoUzupelnienia from "../components/DoUzupelnienia";
 import PageShell from "../components/PageShell";
 import ReviewsBlock, { GOOGLE_MAPS_URL } from "../components/ReviewsBlock";
-import JsonLd, { SITE_URL, studioSchema } from "../components/JsonLd";
+import JsonLd, { SITE_URL, faqSchema, studioSchema } from "../components/JsonLd";
+import { DO_UZUPELNIENIA } from "../lib/do-uzupelnienia";
 
 export const metadata: Metadata = {
-  title: "Rezerwacja i kontakt - studio tatuażu ŁZA TATTOO Lublin",
+  title: "Kontakt - studio tatuażu Lublin | Łza Tattoo",
   description:
-    "Umów tatuaż lub piercing w Lublinie: formularz, telefon 733 625 594, e-mail lub Booksy. ul. Narutowicza 22, pon.-pt. 9-17, sob. 9-15. Dojazd i mapa.",
+    "Kontakt ze studiem tatuażu w Lublinie: adres Narutowicza 22, telefon, godziny otwarcia i rezerwacja. Umów wizytę w Łza Tattoo & Piercing.",
   keywords: [
-    "łza tattoo kontakt",
-    "łza tattoo lublin",
-    "studio tatuażu lublin kontakt",
+    "kontakt studio tatuażu lublin",
     "rezerwacja tatuaż lublin",
-    "umów tatuaż lublin",
-    "narutowicza 22 lublin tatuaż",
+    "umów wizytę tatuaż lublin",
+    "zapisy na piercing lublin",
+    "godziny otwarcia łza tattoo",
+    "studio tatuażu lublin narutowicza",
+    "studio tatuażu lublin czynne w weekend",
   ],
   alternates: { canonical: "/rezerwacja-kontakt" },
   openGraph: {
-    title: "Rezerwacja i kontakt - ŁZA TATTOO & PIERCING Lublin",
+    title: "Kontakt - studio tatuażu Lublin | Łza Tattoo",
     description:
-      "Formularz, telefon, e-mail, Booksy i dojazd do studia tatuażu i piercingu w centrum Lublina.",
+      "Adres Narutowicza 22, telefon, godziny otwarcia i rezerwacja tatuażu oraz piercingu w Lublinie.",
     url: `${SITE_URL}/rezerwacja-kontakt`,
     type: "website",
   },
 };
 
-const ways = [
+const { czasOdpowiedzi, dojazdPrzystanekParking } = DO_UZUPELNIENIA;
+
+const faqItems = [
   {
-    title: "Tatuaż - konsultacja",
-    text: "Opisz pomysł w formularzu poniżej, dołącz informację o miejscu na ciele i przybliżonym rozmiarze. Odpiszemy z widełkami cenowymi i propozycją terminu.",
+    q: "Czy na tatuaż muszę się wcześniej zapisać?",
+    a: "Tak. Tatuaż poprzedzamy konsultacją, na której ustalamy projekt, rozmiar i wycenę.",
   },
   {
-    title: "Piercing - Booksy",
-    text: "Terminy na piercing rezerwujesz sama/sam w Booksy - widzisz wolne godziny i cenę każdego przekłucia. Rezerwacja działa całą dobę.",
+    q: "Czy mogę przyjść na piercing bez rezerwacji?",
+    a: "Zalecamy rezerwację online, bo w kalendarzu od razu widać wolne terminy.",
   },
+  ...(czasOdpowiedzi
+    ? [
+        {
+          q: "Jak szybko odpowiadacie na wiadomości?",
+          a: `${czasOdpowiedzi} Najszybciej złapiesz nas telefonicznie w godzinach otwarcia.`,
+        },
+      ]
+    : []),
   {
-    title: "Telefon i wiadomość",
-    text: "Wolisz porozmawiać? Zadzwoń pod 733 625 594 albo napisz do nas na Instagramie lub e-mailem.",
+    q: "Czy mogę umówić się poza godzinami otwarcia?",
+    a: "Często tak. Skontaktuj się z nami, a ustalimy dogodny termin.",
   },
 ];
+
+const link = "underline underline-offset-4 hover:opacity-60";
+const h2 = "mt-12 text-2xl uppercase tracking-wide md:text-3xl";
+const p = "mt-5 text-lg leading-8 text-black/85";
 
 export default function RezerwacjaKontaktPage() {
   return (
     <PageShell
-      title="Rezerwacja i kontakt"
-      lead="Studio ŁZA TATTOO & PIERCING znajdziesz w centrum Lublina, przy ul. Prezydenta Gabriela Narutowicza 22. Tatuaż zaczynamy od konsultacji, piercing rezerwujesz online - poniżej wszystkie sposoby, żeby się z nami umówić."
+      title="Kontakt studio tatuażu Lublin - Łza Tattoo & Piercing"
+      lead="Potrzebujesz telefonu, adresu albo godzin otwarcia? Na tej stronie masz pełny kontakt ze studiem tatuażu w Lublinie w jednym miejscu. Znajdziesz nas w samym centrum miasta, przy ul. Narutowicza 22. Poniżej zebraliśmy wszystko, czego potrzebujesz, żeby się z nami skontaktować, sprawdzić godziny i umówić wizytę na tatuaż lub piercing."
     >
-      <section className="mt-6 grid gap-4 md:grid-cols-3">
-        {ways.map((way) => (
-          <div key={way.title} className="border border-black/10 bg-white p-5 shadow-sm">
-            <h2 className="text-lg uppercase tracking-wide">{way.title}</h2>
-            <p className="mt-3 text-base leading-7 text-black/75">{way.text}</p>
-          </div>
-        ))}
-      </section>
-
-      <section className="mt-12 grid gap-8 md:grid-cols-2">
-        <div className="text-lg leading-8 text-black/85">
-          <h2 className="text-2xl uppercase tracking-wide md:text-3xl">Dane kontaktowe</h2>
-          <address className="mt-5 not-italic">
-            ŁZA TATTOO &amp; PIERCING
+      <section className="grid gap-8 md:grid-cols-2">
+        <div>
+          <h2 className={h2}>Adres i dane kontaktowe</h2>
+          <address className={`${p} not-italic`}>
+            Łza Tattoo &amp; Piercing
             <br />
             ul. Prezydenta Gabriela Narutowicza 22
             <br />
             20-004 Lublin
           </address>
-          <p className="mt-4">
-            Telefon:{" "}
-            <a href="tel:+48733625594" className="underline underline-offset-4">
-              733 625 594
-            </a>
-            <br />
-            E-mail:{" "}
-            <a href="mailto:lezkatattoo@gmail.com" className="underline underline-offset-4">
-              lezkatattoo@gmail.com
-            </a>
-            <br />
-            Instagram:{" "}
-            <a
-              href="https://www.instagram.com/lezkatattoo"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline underline-offset-4"
-            >
-              lezkatattoo
-            </a>
-          </p>
-
-          <h3 className="mt-8 text-xl uppercase tracking-wide">Godziny otwarcia</h3>
-          <p className="mt-3">
-            Poniedziałek-piątek: 9:00-17:00
-            <br />
-            Sobota: 9:00-15:00
-            <br />
-            Niedziela: nieczynne
-          </p>
-          <p className="mt-3 text-base leading-7 text-black/70">
-            W uzasadnionych przypadkach umawiamy sesje i konsultacje także poza
-            tymi godzinami - zapytaj.
-          </p>
+          <ul className="mt-4 space-y-1 text-lg leading-8 text-black/85">
+            <li>
+              Telefon:{" "}
+              <a href="tel:+48733625594" className={link}>
+                733 625 594
+              </a>
+            </li>
+            <li>
+              E-mail:{" "}
+              <a href="mailto:lezkatattoo@gmail.com" className={link}>
+                lezkatattoo@gmail.com
+              </a>
+            </li>
+            <li>
+              Instagram:{" "}
+              <a
+                href="https://www.instagram.com/lezkatattoo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={link}
+              >
+                @lezkatattoo
+              </a>
+            </li>
+            <li>
+              Facebook:{" "}
+              <a
+                href="https://www.facebook.com/share/18T3hTypmi/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={link}
+              >
+                Łza Tattoo &amp; Piercing
+              </a>
+            </li>
+          </ul>
         </div>
 
-        <div className="flex min-h-[340px] flex-col overflow-hidden border-2 border-black bg-[#f5f2ee] shadow-sm">
+        <div className="mt-12 flex min-h-[340px] flex-col overflow-hidden border-2 border-black bg-[#f5f2ee] shadow-sm">
           <iframe
             title="Mapa dojazdu do studia Łza Tattoo & Piercing w Lublinie"
             src="https://www.google.com/maps?q=%C5%81za%20Tattoo%20%26%20Piercing%20Lublin&hl=pl&z=16&output=embed"
@@ -125,48 +135,127 @@ export default function RezerwacjaKontaktPage() {
         </div>
       </section>
 
-      <section className="mt-12">
-        <h2 className="text-2xl uppercase tracking-wide md:text-3xl">Dojazd</h2>
-        <p className="mt-5 text-lg leading-8 text-black/85">
-          Studio mieści się w ścisłym centrum Lublina, z łatwym dojazdem i
-          parkingiem w okolicy. Regularnie przyjeżdżają do nas klienci ze
-          Świdnika, Lubartowa, Kraśnika, Chełma i Zamościa - dojazd z każdej z
-          tych miejscowości opisaliśmy na stronie{" "}
-          <Link
-            href="/tatuaz-piercing-lublin-okolice"
-            className="underline underline-offset-4 hover:opacity-60"
-          >
-            tatuaż i piercing - Lublin i okolice
-          </Link>
-          .
-        </p>
-      </section>
+      <p className={p}>
+        Studio znajduje się w centrum, dlatego dojedziesz do nas komunikacją
+        miejską lub samochodem.{dojazdPrzystanekParking ? ` ${dojazdPrzystanekParking}` : ""}{" "}
+        Jeśli przyjeżdżasz spoza Lublina, zajrzyj na stronę{" "}
+        <Link href="/tatuaz-piercing-lublin-okolice" className={link}>
+          dojazd z okolic do studia
+        </Link>
+        .
+      </p>
+      {!dojazdPrzystanekParking && (
+        <DoUzupelnienia>
+          najbliższy przystanek i parking - pole dojazdPrzystanekParking w
+          app/lib/do-uzupelnienia.ts.
+        </DoUzupelnienia>
+      )}
 
-      <section id="formularz" className="mt-12 scroll-mt-28">
-        <h2 className="text-2xl uppercase tracking-wide md:text-3xl">
+      <h2 className={h2}>Godziny otwarcia</h2>
+      <p className={p}>Nasze godziny otwarcia to:</p>
+      <ul className="mt-3 space-y-1 text-lg leading-8 text-black/85">
+        <li>poniedziałek-piątek: 9:00-17:00</li>
+        <li>sobota: 9:00-15:00</li>
+        <li>niedziela: bez stałych godzin</li>
+      </ul>
+      <p className={p}>
+        Pytasz, czy studio tatuażu w Lublinie jest czynne w weekend? W sobotę
+        zapraszamy do 15:00. Jesteśmy też elastyczni poza standardowymi
+        godzinami: w wyjątkowych sytuacjach możemy umówić sesję lub konsultację
+        wieczorem albo w niedzielę. Napisz lub zadzwoń, a znajdziemy termin.
+      </p>
+
+      <h2 className={h2}>Jak umówić wizytę na tatuaż?</h2>
+      <p className={p}>
+        Na tatuaż najpierw umawiamy konsultację. Opisz pomysł, wskaż miejsce na
+        ciele i dołącz inspiracje, a my dobierzemy artystę i zaproponujemy
+        termin. Możesz zrobić to przez formularz poniżej, telefonicznie, e-mailem
+        lub przez wiadomość na Instagramie. Zanim napiszesz, możesz przejrzeć{" "}
+        <Link href="/tatuaz-lublin" className={link}>
+          style tatuażu, które wykonujemy
+        </Link>
+        , i{" "}
+        <Link href="/artysci" className={link}>
+          portfolio naszych artystów
+        </Link>
+        .
+      </p>
+
+      <section id="formularz" className="mt-8 scroll-mt-28 border border-black/10 bg-[#f4f1ed] px-6 py-8 md:px-8">
+        <h3 className="mb-6 text-xl uppercase tracking-wide md:text-2xl">
           Formularz kontaktowy
-        </h2>
-        <p className="mt-5 mb-6 text-lg leading-8 text-black/85">
-          Opisz swój pomysł - przy tatuażu podaj miejsce na ciele, przybliżony
-          rozmiar i styl (jeśli masz upatrzonego artystę, napisz kogo), a
-          odezwiemy się z propozycją terminu.
-        </p>
+        </h3>
         <ContactForm />
       </section>
 
+      <h2 className={h2}>Zapisy na piercing</h2>
+      <p className={p}>
+        Rezerwacja piercingu działa online. Wybierasz usługę, widzisz wolne
+        godziny i aktualny cennik, a potwierdzenie dostajesz od razu. Wszystko
+        znajdziesz na stronie{" "}
+        <Link href="/rezerwacja-piercing" className={link}>
+          rezerwacji piercingu online
+        </Link>{" "}
+        lub bezpośrednio w Booksy. Ceny wszystkich przekłuć są też w naszym{" "}
+        <Link href="/cennik" className={link}>
+          cenniku
+        </Link>
+        . Osoby niepełnoletnie potrzebują pisemnej zgody rodzica lub opiekuna i
+        jego obecności na wizycie.
+      </p>
       <BooksyCta />
 
+      <h2 className={h2}>Z czym warto przyjść na konsultację?</h2>
+      <p className={p}>
+        Konsultacja przebiega sprawniej, gdy masz przygotowane kilka rzeczy:
+        referencje wzoru (zdjęcia, rysunki, motywy), informację o miejscu na
+        ciele oraz orientacyjny rozmiar. Warto też napisać o wcześniejszych
+        tatuażach, jeśli wzór ma się z nimi łączyć lub je przykryć. Wskazówki,
+        jak przygotować się do samej sesji, znajdziesz w poradniku{" "}
+        <Link href="/blog/jak-przygotowac-sie-do-tatuazu" className={link}>
+          jak przygotować się do tatuażu
+        </Link>
+        .
+      </p>
+
+      <section className="mt-12">
+        <h2 className="text-2xl uppercase tracking-wide md:text-3xl">
+          Najczęstsze pytania
+        </h2>
+        <dl className="mt-6 divide-y divide-black/10 border-y border-black/10">
+          {faqItems.map((item) => (
+            <div key={item.q} className="py-5">
+              <dt className="text-lg font-bold">{item.q}</dt>
+              <dd className="mt-2 text-lg leading-8 text-black/85">{item.a}</dd>
+            </div>
+          ))}
+        </dl>
+        {!czasOdpowiedzi && (
+          <DoUzupelnienia>
+            typowy czas odpowiedzi na wiadomości (FAQ „Jak szybko
+            odpowiadacie?”) - pole czasOdpowiedzi w app/lib/do-uzupelnienia.ts.
+          </DoUzupelnienia>
+        )}
+      </section>
+
       <ReviewsBlock />
+
+      <h2 className={h2}>Do zobaczenia przy Narutowicza 22</h2>
+      <p className={p}>
+        Zadzwoń, napisz lub zarezerwuj termin online. Chętnie odpowiemy na
+        pytania o tatuaż i piercing oraz pomożemy zaplanować wizytę.
+      </p>
 
       <JsonLd
         data={[
           studioSchema,
           {
             "@type": "ContactPage",
-            name: "Rezerwacja i kontakt - ŁZA TATTOO & PIERCING",
+            name: "Kontakt - studio tatuażu Lublin | Łza Tattoo",
             url: `${SITE_URL}/rezerwacja-kontakt`,
             about: { "@id": `${SITE_URL}/#studio` },
           },
+          faqSchema(faqItems),
         ]}
       />
     </PageShell>

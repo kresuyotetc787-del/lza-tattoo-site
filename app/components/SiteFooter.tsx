@@ -48,6 +48,11 @@ export default function SiteFooter() {
               </Link>
             </li>
             <li>
+              <Link href="/piercing-nosa-lublin" className="hover:opacity-60">
+                Przekłuwanie nosa
+              </Link>
+            </li>
+            <li>
               <Link
                 href="/tatuaz-piercing-lublin-okolice"
                 className="hover:opacity-60"

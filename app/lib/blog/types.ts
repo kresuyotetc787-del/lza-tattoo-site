@@ -1,3 +1,5 @@
+import type { Work } from "../artists";
+
 // Fragment tekstu w akapicie. Zwykły string, link albo odnośnik do wpisu.
 export type Inline =
   | string
@@ -18,7 +20,24 @@ export type Inline =
 export type Block =
   | { type: "p"; content: Inline[] }
   | { type: "h2"; text: string }
+  | { type: "h3"; text: string }
   | { type: "ul"; items: string[] }
+  /** Lista numerowana (kroki). */
+  | { type: "ol"; items: string[] }
+  | {
+      type: "table";
+      head: string[];
+      rows: string[][];
+      /** Podpis pod tabelą, np. źródło danych. */
+      caption?: string;
+    }
+  /** Siatka zdjęć prac ze studia (wpisy z app/lib/artists.ts). */
+  | { type: "gallery"; items: Work[]; caption?: string }
+  /**
+   * Brakująca treść. Na produkcji się nie wyświetla, lokalnie i na podglądzie
+   * Vercel pokazuje żółtą ramkę - patrz app/lib/do-uzupelnienia.ts.
+   */
+  | { type: "todo"; text: string }
   | {
       type: "image";
       src: string;

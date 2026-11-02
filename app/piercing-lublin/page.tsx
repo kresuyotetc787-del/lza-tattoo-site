@@ -86,6 +86,8 @@ const blocks: Block[] = [
         text: "przekłuwanie uszu w Lublinie",
         href: "/przekluwanie-uszu-lublin",
       },
+      ", a nostril i septum - na stronie ",
+      { text: "przekłuwanie nosa w Lublinie", href: "/piercing-nosa-lublin" },
       ".",
     ],
   },

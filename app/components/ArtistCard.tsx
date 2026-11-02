@@ -1,4 +1,5 @@
 import Image from "next/image";
+import DoUzupelnienia from "./DoUzupelnienia";
 import { BOOKSY_URL } from "../lib/booksy";
 import type { Artist } from "../lib/artists";
 
@@ -27,6 +28,16 @@ export default function ArtistCard({
       </p>
       {artist.bio && (
         <p className="mb-3 text-center text-sm leading-6 text-black/75">{artist.bio}</p>
+      )}
+      {(!artist.name || !artist.bio) && (
+        <div className="mb-3">
+          <DoUzupelnienia>
+            {[!artist.name && "imię", !artist.bio && "doświadczenie i specjalizacja (2-3 zdania)"]
+              .filter(Boolean)
+              .join(", ")}{" "}
+            - pola name / bio dla „{artist.handle}” w app/lib/artists.ts.
+          </DoUzupelnienia>
+        </div>
       )}
 
       <div className="relative h-[450px] overflow-hidden border border-black">

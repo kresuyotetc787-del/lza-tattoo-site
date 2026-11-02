@@ -267,7 +267,7 @@ export const ARTISTS: Artist[] = [
   },
 ];
 
-function work(handle: string, index: number): Work {
+export function work(handle: string, index: number): Work {
   const artist = ARTISTS.find((a) => a.handle === handle);
   if (!artist) throw new Error(`Nieznany artysta: ${handle}`);
   return artist.works[index];
