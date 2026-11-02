@@ -1,6 +1,7 @@
 import { BOOKSY_URL } from "../lib/booksy";
+import { SITE_URL } from "../lib/site";
 
-export const SITE_URL = "https://lzatattoo.pl";
+export { SITE_URL };
 
 export const studioSchema = {
   "@type": "TattooParlor",

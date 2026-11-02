@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { BOOKSY_SHORT_LABEL, BOOKSY_URL } from "../lib/booksy";
+import { CITY_LINKS } from "../lib/routes";
 
 export default function SiteFooter() {
   return (
     <footer className="border-t border-black/10 bg-[#f4f1ed]">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 md:grid-cols-3 lg:px-8">
+      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
         <div>
           <div className="text-sm uppercase tracking-[0.28em]">
             ŁZA TATTOO &amp; PIERCING
@@ -55,6 +56,16 @@ export default function SiteFooter() {
               </Link>
             </li>
             <li>
+              <Link href="/cennik" className="hover:opacity-60">
+                Cennik
+              </Link>
+            </li>
+            <li>
+              <Link href="/artysci" className="hover:opacity-60">
+                Artyści
+              </Link>
+            </li>
+            <li>
               <Link href="/blog" className="hover:opacity-60">
                 Blog
               </Link>
@@ -64,9 +75,29 @@ export default function SiteFooter() {
 
         <div>
           <div className="text-[11px] uppercase tracking-[0.24em] text-black/45">
+            Dojazd z okolic
+          </div>
+          <ul className="mt-4 space-y-2 text-sm">
+            {CITY_LINKS.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="hover:opacity-60">
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <div className="text-[11px] uppercase tracking-[0.24em] text-black/45">
             Kontakt
           </div>
           <ul className="mt-4 space-y-2 text-sm">
+            <li>
+              <Link href="/rezerwacja-kontakt" className="hover:opacity-60">
+                Rezerwacja i kontakt
+              </Link>
+            </li>
             <li>
               <a
                 href={BOOKSY_URL}

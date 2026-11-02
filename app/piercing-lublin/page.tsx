@@ -2,7 +2,13 @@ import type { Metadata } from "next";
 import ContentBlocks from "../components/ContentBlocks";
 import ContactCta from "../components/ContactCta";
 import BooksyCta from "../components/BooksyCta";
+import Link from "next/link";
 import PageShell from "../components/PageShell";
+import PriceTable from "../components/PriceTable";
+import ReviewsBlock from "../components/ReviewsBlock";
+import WorksGallery from "../components/WorksGallery";
+import { GALLERY } from "../lib/artists";
+import { POPULARNE_PRZEKLUCIA } from "../lib/cennik";
 import JsonLd, { SITE_URL, studioSchema } from "../components/JsonLd";
 import { postInline } from "../lib/blog";
 import { BOOKSY_SHORT_LABEL } from "../lib/booksy";
@@ -121,18 +127,38 @@ export default function PiercingLublinPage() {
     >
       <ContentBlocks blocks={blocks} />
 
+      <WorksGallery
+        title="Piercing wykonany w naszym studiu"
+        works={GALLERY.piercing}
+        caption="Helix, industrial, conch, nostril i kompozycje kolczyków w uchu."
+      />
+
       <h2 className="mt-12 text-2xl uppercase tracking-wide md:text-3xl">
-        Cennik i rezerwacja
+        Cennik piercingu
       </h2>
+      <p className="mt-5 text-lg leading-8 text-black/85">
+        Ile kosztuje przekłucie? Ceny najczęściej wybieranych zabiegów:
+      </p>
+      <PriceTable items={POPULARNE_PRZEKLUCIA} caption="Ceny popularnych przekłuć" />
+      <p className="mt-4 text-lg leading-8 text-black/85">
+        Ceny wszystkich przekłuć - ucha, nosa, ust, brwi, sutków i piercingu
+        intymnego - znajdziesz w{" "}
+        <Link href="/cennik" className="underline underline-offset-4 hover:opacity-60">
+          pełnym cenniku piercingu
+        </Link>
+        .
+      </p>
 
       <BooksyCta>
         <p>
-          Terminy na piercing prowadzimy w Booksy ({BOOKSY_SHORT_LABEL}) - tam
-          znajdziesz też aktualny cennik poszczególnych przekłuć. Cena zależy od
-          rodzaju zabiegu i wybranej biżuterii, a kalendarz pokazuje wolne
-          godziny na żywo, więc rezerwację zrobisz samodzielnie w kilka chwil.
+          Terminy na piercing prowadzimy w Booksy ({BOOKSY_SHORT_LABEL}) -
+          kalendarz pokazuje wolne godziny na żywo, a przy każdej usłudze widać
+          tę samą cenę co w cenniku, więc rezerwację zrobisz samodzielnie w kilka
+          chwil.
         </p>
       </BooksyCta>
+
+      <ReviewsBlock heading="Piercing Lublin - opinie klientów" />
 
       <ContactCta>
         <p>

@@ -100,7 +100,7 @@ const post: Post = {
       type: "p",
       content: [
         "Dane możesz przesłać przez ",
-        { text: "formularz kontaktowy", href: "/#booking" },
+        { text: "formularz kontaktowy", href: "/rezerwacja-kontakt#formularz" },
         " - odpowiemy i przedstawimy widełki dla Twojego pomysłu.",
       ],
     },
@@ -157,7 +157,7 @@ const post: Post = {
       type: "p",
       content: [
         "Chcesz poznać widełki dla swojego pomysłu? Zapraszamy do studia ŁZA TATTOO & PIERCING przy ul. Prezydenta Gabriela Narutowicza 22. Opisz projekt przez ",
-        { text: "formularz kontaktowy", href: "/#booking" },
+        { text: "formularz kontaktowy", href: "/rezerwacja-kontakt#formularz" },
         " lub zadzwoń pod numer 733 625 594, a przedstawimy propozycję. Poznaj też naszą ofertę: ",
         { text: "tatuaż w Lublinie", href: "/tatuaz-lublin" },
         ".",

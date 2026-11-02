@@ -2,13 +2,13 @@ import Link from "next/link";
 import { BOOKSY_URL } from "../lib/booksy";
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/#studio", label: "Studio" },
+  { href: "/", label: "Start" },
   { href: "/tatuaz-lublin", label: "Tatuaż" },
   { href: "/piercing-lublin", label: "Piercing" },
-  { href: "/rezerwacja-piercing", label: "Rezerwacja" },
+  { href: "/cennik", label: "Cennik" },
+  { href: "/artysci", label: "Artyści" },
   { href: "/blog", label: "Blog" },
-  { href: "/#contact", label: "Kontakt" },
+  { href: "/rezerwacja-kontakt", label: "Kontakt" },
 ];
 
 export default function SiteHeader() {
@@ -20,7 +20,7 @@ export default function SiteHeader() {
             ŁZA TATTOO &amp; PIERCING
           </div>
           <div className="text-[10px] uppercase tracking-[0.32em] text-black/45">
-            Lublin • Tattoo Studio • Tattoo Artists
+            Lublin • Studio tatuażu • Piercing
           </div>
         </Link>
 

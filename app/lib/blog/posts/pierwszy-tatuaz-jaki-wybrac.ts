@@ -189,7 +189,7 @@ const post: Post = {
       type: "p",
       content: [
         "Jeśli szukasz miejsca na pierwszy tatuaż, zapraszamy do ŁZA TATTOO & PIERCING przy ul. Prezydenta Gabriela Narutowicza 22. Opowiedz nam o swoim pomyśle przez ",
-        { text: "formularz kontaktowy", href: "/#booking" },
+        { text: "formularz kontaktowy", href: "/rezerwacja-kontakt#formularz" },
         " lub zadzwoń pod numer 733 625 594, a pomożemy dobrać artystę i termin konsultacji.",
       ],
     },

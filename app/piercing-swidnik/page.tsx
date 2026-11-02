@@ -63,7 +63,7 @@ const blocks: Block[] = [
     type: "p",
     content: [
       "Skoro już wybierasz się do Lublina, warto wiedzieć, że pod tym samym adresem działa nasze ",
-      { text: "studio tatuażu", href: "/tatuaz-lublin" },
+      { text: "studio tatuażu", href: "/tatuaz-swidnik" },
       " - dla klientów szukających frazy tatuaż Świdnik czy studio tatuażu Świdnik to naturalne rozszerzenie oferty. Realizujemy projekty minimalistyczne, kolorowe, czarno-białe, japońskie i geometryczne, a także poprawki i cover-upy.",
     ],
   },

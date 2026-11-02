@@ -105,7 +105,7 @@ const blocks: Block[] = [
       "Szczegóły oferty opisaliśmy na stronie ",
       { text: "tatuaż Lublin", href: "/tatuaz-lublin" },
       ", a sam projekt omówimy po Twoim zgłoszeniu przez ",
-      { text: "formularz kontaktowy", href: "/#booking" },
+      { text: "formularz kontaktowy", href: "/rezerwacja-kontakt#formularz" },
       ".",
     ],
   },
@@ -186,7 +186,7 @@ export default function RezerwacjaPiercinguPage() {
             733 625 594
           </a>
           <Link
-            href="/#booking"
+            href="/rezerwacja-kontakt#formularz"
             className="border border-black/10 bg-white px-6 py-3 text-[11px] uppercase tracking-[0.24em] shadow-sm transition hover:-translate-y-0.5"
           >
             Formularz kontaktowy

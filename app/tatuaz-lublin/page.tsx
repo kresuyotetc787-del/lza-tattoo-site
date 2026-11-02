@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import ContentBlocks from "../components/ContentBlocks";
 import ContactCta from "../components/ContactCta";
 import PageShell from "../components/PageShell";
+import ReviewsBlock from "../components/ReviewsBlock";
+import WorksGallery from "../components/WorksGallery";
+import { GALLERY } from "../lib/artists";
 import JsonLd, { SITE_URL, studioSchema } from "../components/JsonLd";
 import { postInline } from "../lib/blog";
 import type { Block } from "../lib/blog/types";
@@ -133,6 +137,14 @@ export default function TatuazLublinPage() {
     >
       <ContentBlocks blocks={blocks} />
 
+      <WorksGallery
+        title="Tatuaże wykonane w naszym studiu"
+        works={GALLERY.tatuaz}
+        caption="Kolorowy realizm, dotwork, black & grey i blackwork - prace naszych tatuażystów."
+      />
+
+      <ReviewsBlock heading="Tatuaż Lublin - opinie klientów" />
+
       <h2 className="mt-12 text-2xl uppercase tracking-wide md:text-3xl">
         Cennik i rezerwacja wizyty
       </h2>
@@ -144,7 +156,11 @@ export default function TatuazLublinPage() {
           skomplikowania i szczegółowości wzoru oraz miejsce na ciele, w którym
           ma zostać wykonany. Dokładne widełki podajemy podczas konsultacji: aby
           ją umówić, skorzystaj z formularza kontaktowego, zadzwoń lub napisz do
-          nas e-mail.
+          nas e-mail. Więcej o wycenie znajdziesz w{" "}
+          <Link href="/cennik#tatuaz" className="underline underline-offset-4 hover:opacity-60">
+            cenniku
+          </Link>
+          .
         </p>
         <p className="mt-4">
           Odwiedź nas przy ul. Prezydenta Gabriela Narutowicza 22 w Lublinie i

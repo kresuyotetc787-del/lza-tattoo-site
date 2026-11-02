@@ -68,14 +68,6 @@ export function getPublishedPost(slug: string): Post | undefined {
 }
 
 /**
- * Wszystkie slugi, także zaplanowane. Używane wyłącznie przez
- * generateStaticParams, żeby Next znał trasę zanim wpis wejdzie na stronę.
- */
-export function getAllSlugs(): string[] {
-  return allPosts.map((post) => post.slug);
-}
-
-/**
  * Odwołanie do wpisu wewnątrz innego tekstu. Jeśli wpis czeka jeszcze na
  * swoją datę publikacji, zwraca sam tytuł zamiast linku - dzięki temu
  * podstrony ofertowe nigdy nie linkują do strony, której jeszcze nie ma.

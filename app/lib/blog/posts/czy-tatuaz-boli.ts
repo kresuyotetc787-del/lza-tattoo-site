@@ -185,7 +185,7 @@ const post: Post = {
         "W ŁZA TATTOO & PIERCING każdą sesję poprzedzamy rozmową o projekcie, miejscu na ciele i Twoich obawach. ",
         { text: "Tatuaż w Lublinie", href: "/tatuaz-lublin" },
         " wykonujemy w sterylnych warunkach i bez pośpiechu. Chcesz zapytać o konkretne miejsce? Napisz do nas przez ",
-        { text: "formularz kontaktowy", href: "/#booking" },
+        { text: "formularz kontaktowy", href: "/rezerwacja-kontakt#formularz" },
         " lub zadzwoń pod numer 733 625 594.",
       ],
     },
