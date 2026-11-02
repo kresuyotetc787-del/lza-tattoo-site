@@ -7,7 +7,7 @@ export default function ContactCta({ children }: { children: React.ReactNode }) 
 
       <div className="mt-6 flex flex-wrap gap-3">
         <Link
-          href="/#booking"
+          href="/rezerwacja-kontakt#formularz"
           className="border border-black bg-[#252b3a] px-6 py-3 text-[11px] uppercase tracking-[0.24em] text-white transition hover:bg-black"
         >
           Formularz kontaktowy

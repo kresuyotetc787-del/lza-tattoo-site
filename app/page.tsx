@@ -1,10 +1,31 @@
-"use client";
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
 import LocationsMap from "./components/LocationsMap";
+import ArtistCard from "./components/ArtistCard";
+import ContactForm from "./components/ContactForm";
+import ReviewsBlock, { GOOGLE_MAPS_URL } from "./components/ReviewsBlock";
 import JsonLd, { faqSchema, studioSchema } from "./components/JsonLd";
+import { ARTISTS } from "./lib/artists";
 import { BOOKSY_SHORT_LABEL, BOOKSY_URL } from "./lib/booksy";
+import { SITE_URL } from "./lib/site";
+
+// Canonical ustawiamy tutaj, a nie w layout.tsx - inaczej dziedziczyłaby go
+// każda podstrona bez własnego canonical (np. strona 404).
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Tatuaż i piercing Lublin - Studio ŁZA TATTOO & PIERCING",
+    description:
+      "Studio tatuażu i piercingu w Lublinie. Indywidualne projekty, sterylne warunki i doświadczony zespół artystów.",
+    url: `${SITE_URL}/`,
+    siteName: "ŁZA TATTOO & PIERCING",
+    locale: "pl_PL",
+    type: "website",
+  },
+};
 
 const homeFaq = [
   {
@@ -17,7 +38,7 @@ const homeFaq = [
   },
   {
     q: "Ile kosztuje piercing?",
-    a: `Aktualny cennik piercingu znajdziesz przy poszczególnych usługach w Booksy (${BOOKSY_SHORT_LABEL}) - cena zależy od rodzaju przekłucia i wybranej biżuterii. Jeśli nie wiesz, co wybrać, napisz lub zadzwoń, a doradzimy przed rezerwacją.`,
+    a: "Przekłucie płatka ucha kosztuje 120 zł, helix i nostril 140 zł, tragus 150 zł, a przekłucie pępka, septum i języka 180 zł. Pełny cennik wszystkich przekłuć znajdziesz na stronie Cennik oraz przy usługach w Booksy - cena zależy od rodzaju przekłucia.",
   },
   {
     q: "Czy trzeba się umawiać wcześniej?",
@@ -45,120 +66,29 @@ const homeFaq = [
   },
 ];
 
+const studioGallery = [
+  {
+    src: "/images/studio1.jpg",
+    alt: "Wejście do studia Łza Tattoo & Piercing przy ul. Narutowicza 22 w Lublinie",
+  },
+  {
+    src: "/images/studio2.jpg",
+    alt: "Stanowisko do tatuażu i piercingu z fotelem zabiegowym w studiu Łza Tattoo w Lublinie",
+  },
+  {
+    src: "/images/studio3.jpg",
+    alt: "Recepcja i poczekalnia z czerwoną sofą w studiu tatuażu Łza Tattoo w Lublinie",
+  },
+  {
+    src: "/images/studio4.jpg",
+    alt: "Kolorowe stanowisko do tatuowania z muralem w studiu Łza Tattoo Lublin",
+  },
+];
+
 export default function Home() {
-  const heroImage = "/images/studio-main.jpg";
-
-  const studioGallery = [
-    "/images/studio1.jpg",
-    "/images/studio2.jpg",
-    "/images/studio3.jpg",
-    "/images/studio4.jpg",
-  ];
-  const booksyArtists = ["piercinglbn", "dziurikikarolki", "dziurkikarolki"];
-
-  const artists = [
-    "piercinglbn",
-    "ilotattoo",
-    "blackbirddotwork",
-    "demonology_ink",
-    "maxovod",
-   "dziurkikarolki",
-   "inked.by.luvlom",
-  ];
-
-  
-   function ArtistCard({
-  name,
-  isCentered = false,
-}: {
-  name: string;
-  isCentered?: boolean;
-}) {
-  return (
-    
-    <div
-    
-      className={`border border-black/10 bg-white p-5 shadow-sm ${
-        isCentered ? "md:col-span-2 md:mx-auto md:max-w-md" : ""
-        
-      }`}
-    >
-      <div className="text-center text-lg uppercase mb-3">
-      {name === "piercinglbn" ? "Piercing LBN" : name}
-    </div>
-      <div className="overflow-hidden border border-black">
-        <img
-          src={`/images/artists/${name}.jpg`}
-          alt={name}
-          className={`h-[450px] w-full object-cover ${
-  name === "dziurikikarolki"
-    ? "object-[center_80%]"
-    : name === "ilotattoo"
-    ? "object-[center_20%]"
-    : name === "piercinglbn"
-    ? "object-top"
-    : name === "demonology_ink"
-    ? "object-[center_60%]"
-    : "object-center"
-}`}
-
-></img>
-      </div>
-
-      
-    <div
-  className={`mt-2 grid gap-0 ${
-    booksyArtists.includes(name) ? "grid-cols-2" : "grid-cols-1"
-  }`}
->
-  <a
-    href={`https://instagram.com/${name}`}
-    target="_blank"
-    rel="noreferrer"
-    className="border border-black px-4 py-3 text-center text-lg font-semibold uppercase hover:bg-black hover:text-white"
-  >
-    Instagram
-  </a>
-
-  {booksyArtists.includes(name) && (
-    <a
-      href={BOOKSY_URL}
-      target="_blank"
-      rel="noreferrer"
-      className="border border-l-0 border-black px-4 py-3 text-center text-lg font-semibold uppercase hover:bg-black hover:text-white"
-    >
-      Booksy
-    </a>
-  )}
-</div>
-      <div className="mt-3 grid grid-cols-3 gap-2">
-        {[1, 2, 3].map((i) => (
-          <div
-            key={`${name}-${i}`}
-            className="aspect-square overflow-hidden border border-black"
-          >
-            <img
-               src={`/images/works/${name}-${i}.jpg`}
-               alt={`${name} work ${i}`}
-               className={`h-full w-full object-cover ${
-                name === "piercinglbn" && i === 2
-                ? "object-[center_90%]" // ПОДНЯТЬ (1 мастер)
-              : name === "ilotattoo" && i === 2
-              ? "object-[center_40%]" // оставить как есть (2 мастер)
-              : "object-center"
-            }`}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
   return (
     <div className="min-h-screen bg-[#e8e5e1] text-black font-serif">
-      <style>{`
-        html { scroll-behavior: smooth; }
-      `}</style>
+      <style>{`html { scroll-behavior: smooth; }`}</style>
 
       <SiteHeader />
 
@@ -177,11 +107,15 @@ export default function Home() {
               </span>
             </h1>
 
-            <div className="mx-auto max-w-5xl overflow-hidden border border-black/10 bg-white shadow-sm">
-              <img
-                src={heroImage}
-                alt="Tattoo studio"
-                className="h-[320px] w-full object-cover md:h-[560px]"
+            <div className="relative mx-auto h-[320px] max-w-5xl overflow-hidden border border-black/10 bg-white shadow-sm md:h-[560px]">
+              <Image
+                src="/images/studio-main.jpg"
+                alt="Wnętrze studia tatuażu i piercingu Łza Tattoo w Lublinie - recepcja z logo studia"
+                fill
+                loading="eager"
+                fetchPriority="high"
+                sizes="(max-width: 1024px) 100vw, 1024px"
+                className="object-cover"
               />
             </div>
 
@@ -190,18 +124,19 @@ export default function Home() {
                 href="#artists"
                 className="min-w-[170px] border border-black/10 bg-white px-6 py-3 text-center text-[11px] uppercase tracking-[0.24em] shadow-sm"
               >
-                Tattoo Artists
+                Nasi artyści
               </a>
               <a
                 href="#contact"
                 className="min-w-[170px] border border-black/10 bg-[#d7d2cc] px-6 py-3 text-center text-[11px] uppercase tracking-[0.24em] shadow-sm"
               >
-                Contact
+                Kontakt
               </a>
             </div>
 
             <p className="mx-auto mt-6 max-w-[320px] px-3 text-center text-[18px] leading-[1.45] text-slate-700 sm:max-w-2xl sm:text-2xl md:max-w-5xl md:text-[34px]">
-  Indywidualne podejście, najwyższy poziom profesjonalizmu i efekt, do którego będziesz wracać z dumą.
+              Indywidualne podejście, najwyższy poziom profesjonalizmu i efekt,
+              do którego będziesz wracać z dumą.
             </p>
           </div>
         </section>
@@ -211,53 +146,53 @@ export default function Home() {
           className="mx-auto max-w-6xl px-4 pb-10 lg:px-8 lg:pb-14"
         >
           <div className="border border-black/5 bg-[#f4f1ed] px-6 py-6 shadow-sm md:px-8 md:py-8">
-            <div className="grid gap-10 md:grid-cols-2 items-stretch">
-              <div className="rounded-[40px] bg-white/90 px-10 py-10 flex flex-col justify-center h-full">
+            <div className="grid items-stretch gap-10 md:grid-cols-2">
+              <div className="flex h-full flex-col justify-center rounded-[40px] bg-white/90 px-10 py-10">
                 <h2 className="mb-6 text-5xl md:text-7xl">
                   O nas
                   <span className="mt-3 block text-base uppercase tracking-[0.2em] text-black/55 md:text-xl">
                     Salon tatuażu i piercingu w centrum Lublina
                   </span>
                 </h2>
-                
-                  Łza Tattoo&amp;Piercing to studio, w którym pasja do sztuki
-                  spotyka się z profesjonalizmem i dbałością o każdy detal.
-                  Oferujemy tatuaże oraz piercing wykonywane w sterylnych
-                  warunkach, z indywidualnym podejściem do każdego klienta.
-                  Jeśli szukasz miejsca, gdzie Twoja wizja zostanie zamieniona w
-                  coś wyjątkowego — jesteś w dobrych rękach.
-                    <div className="mt-8 flex border border-black">
-    <a
-      href="https://www.instagram.com/lezkatattoo?igsh=MWtqdGc0MndqN2ZtcQ=="
-      target="_blank"
-      rel="noopener noreferrer"
-      className="w-1/2 border-r border-black py-4 text-center font-bold uppercase hover:bg-black hover:text-white transition"
-    >
-      Instagram
-    </a>
-
-    <a
-      href="https://www.facebook.com/share/18T3hTypmi/?mibextid=wwXIfr"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="w-1/2 py-4 text-center font-bold uppercase hover:bg-black hover:text-white transition"
-    >
-      Facebook
-    </a>
-  </div>
-</div>
-                
-              <div className="grid grid-cols-2 gap-6 h-full">
-                
-                {studioGallery.map((src, index) => (
-                  <div
-                    key={`studio-${index}`}
-                    className="aspect-square overflow-hidden bg-white shadow-sm"
+                Łza Tattoo&amp;Piercing to studio, w którym pasja do sztuki
+                spotyka się z profesjonalizmem i dbałością o każdy detal.
+                Oferujemy tatuaże oraz piercing wykonywane w sterylnych
+                warunkach, z indywidualnym podejściem do każdego klienta. Jeśli
+                szukasz miejsca, gdzie Twoja wizja zostanie zamieniona w coś
+                wyjątkowego — jesteś w dobrych rękach.
+                <div className="mt-8 flex border border-black">
+                  <a
+                    href="https://www.instagram.com/lezkatattoo?igsh=MWtqdGc0MndqN2ZtcQ=="
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-1/2 border-r border-black py-4 text-center font-bold uppercase transition hover:bg-black hover:text-white"
                   >
-                    <img
-                      src={src}
-                      alt={`Studio photo ${index + 1}`}
-                      className="h-full w-full object-cover"
+                    Instagram
+                  </a>
+
+                  <a
+                    href="https://www.facebook.com/share/18T3hTypmi/?mibextid=wwXIfr"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-1/2 py-4 text-center font-bold uppercase transition hover:bg-black hover:text-white"
+                  >
+                    Facebook
+                  </a>
+                </div>
+              </div>
+
+              <div className="grid h-full grid-cols-2 gap-6">
+                {studioGallery.map((photo) => (
+                  <div
+                    key={photo.src}
+                    className="relative aspect-square overflow-hidden bg-white shadow-sm"
+                  >
+                    <Image
+                      src={photo.src}
+                      alt={photo.alt}
+                      fill
+                      sizes="(max-width: 768px) 45vw, 260px"
+                      className="object-cover"
                     />
                   </div>
                 ))}
@@ -321,9 +256,10 @@ export default function Home() {
               </h3>
               <p className="mt-4 text-base leading-8 text-black/75">
                 Terminy na piercing prowadzimy w Booksy — w kalendarzu widzisz
-                wolne godziny i aktualny cennik poszczególnych przekłuć.
-                Rezerwacja działa całą dobę. Tatuaże wyceniamy indywidualnie,
-                więc tutaj zaczynamy od konsultacji.
+                wolne godziny i od razu rezerwujesz wizytę. Przekłucie płatka
+                ucha kosztuje 120 zł, helix 140 zł, a pępek 180 zł - pełny
+                cennik znajdziesz na osobnej stronie. Tatuaże wyceniamy
+                indywidualnie, więc tutaj zaczynamy od konsultacji.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
@@ -336,10 +272,16 @@ export default function Home() {
                   Zarezerwuj w Booksy
                 </a>
                 <Link
+                  href="/cennik"
+                  className="border border-black/10 bg-[#f4f1ed] px-6 py-3 text-[11px] uppercase tracking-[0.24em] shadow-sm transition hover:-translate-y-0.5"
+                >
+                  Cennik
+                </Link>
+                <Link
                   href="/rezerwacja-piercing"
                   className="border border-black/10 bg-[#f4f1ed] px-6 py-3 text-[11px] uppercase tracking-[0.24em] shadow-sm transition hover:-translate-y-0.5"
                 >
-                  Jak działa rezerwacja i cennik
+                  Jak działa rezerwacja
                 </Link>
               </div>
 
@@ -379,38 +321,41 @@ export default function Home() {
           </div>
         </section>
 
-        <section
-          id="artists"
-          className="mx-auto max-w-6xl px-4 pb-16 lg:px-8"
-        >
+        <section id="artists" className="mx-auto max-w-6xl px-4 pb-16 lg:px-8">
           <div className="border border-black/10 bg-[#f4f1ed] px-6 py-6 shadow-sm md:px-8 md:py-8">
-            <h2 className="mb-8 text-4xl md:text-6xl uppercase">
-              Artists
+            <h2 className="mb-8 text-4xl uppercase md:text-6xl">
+              Artyści
               <span className="mt-3 block text-base tracking-[0.2em] text-black/55 md:text-xl">
-                Tatuażyści i piercer w Lublinie
+                Tatuażyści i piercerzy w Lublinie
               </span>
             </h2>
 
             <div className="grid gap-6 md:grid-cols-2">
-              {artists.map((name, index) => {
+              {ARTISTS.map((artist, index) => {
                 const isLastOdd =
-                  artists.length % 2 !== 0 && index === artists.length - 1;
+                  ARTISTS.length % 2 !== 0 && index === ARTISTS.length - 1;
                 return (
                   <ArtistCard
-                    key={name}
-                    name={name}
+                    key={artist.handle}
+                    artist={artist}
                     isCentered={isLastOdd}
                   />
                 );
               })}
             </div>
+
+            <Link
+              href="/artysci"
+              className="mt-6 block border border-black/10 bg-white px-6 py-5 text-center text-[11px] uppercase tracking-[0.24em] shadow-sm transition hover:-translate-y-0.5"
+            >
+              Style i portfolio artystów
+            </Link>
+
+            <ReviewsBlock headingLevel="h3" />
           </div>
         </section>
 
-        <section
-          id="faq"
-          className="mx-auto max-w-6xl px-4 pb-16 lg:px-8"
-        >
+        <section id="faq" className="mx-auto max-w-6xl px-4 pb-16 lg:px-8">
           <div className="border border-black/10 bg-[#f4f1ed] px-6 py-6 shadow-sm md:px-8 md:py-8">
             <h2 className="mb-8 text-4xl uppercase md:text-6xl">
               FAQ
@@ -468,30 +413,39 @@ export default function Home() {
                     poza tymi godzinami. Skontaktuj się z nami, a znajdziemy dla
                     Ciebie odpowiedni termin.
                     <div className="mt-6 space-y-2 text-lg">
-  <p>
-    Instagram:{" "}
-    <a
-      href="https://www.instagram.com/lezkatattoo?igsh=MWtqdGc0MndqN2ZtcQ=="
-      target="_blank"
-      rel="noopener noreferrer"
-      className="underline hover:opacity-70"
-    >
-      lezkatattoo
-    </a>
-  </p>
+                      <p>
+                        Instagram:{" "}
+                        <a
+                          href="https://www.instagram.com/lezkatattoo?igsh=MWtqdGc0MndqN2ZtcQ=="
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline hover:opacity-70"
+                        >
+                          lezkatattoo
+                        </a>
+                      </p>
 
-  <p>
-    Facebook:{" "}
-    <a
-      href="https://www.facebook.com/share/18T3hTypmi/?mibextid=wwXIfr"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="underline hover:opacity-70"
-    >
-      Łza Tattoo & Piercing
-    </a>
-  </p>
-</div>
+                      <p>
+                        Facebook:{" "}
+                        <a
+                          href="https://www.facebook.com/share/18T3hTypmi/?mibextid=wwXIfr"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline hover:opacity-70"
+                        >
+                          Łza Tattoo & Piercing
+                        </a>
+                      </p>
+
+                      <p>
+                        <Link
+                          href="/rezerwacja-kontakt"
+                          className="underline hover:opacity-70"
+                        >
+                          Rezerwacja i kontakt - wszystkie sposoby
+                        </Link>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -499,16 +453,17 @@ export default function Home() {
               <div className="overflow-hidden border-2 border-black bg-[#f5f2ee] shadow-sm">
                 <div className="flex h-full min-h-[340px] flex-col">
                   <iframe
-  src="https://www.google.com/maps?q=%C5%81za%20Tattoo%20%26%20Piercing%20Lublin&hl=pl&z=16&output=embed"
-  className="w-full h-full"
-  style={{ border: 0 }}
-  loading="lazy"
-  allowFullScreen
-  referrerPolicy="no-referrer-when-downgrade"
-/>
-                  
+                    title="Mapa dojazdu do studia Łza Tattoo & Piercing w Lublinie"
+                    src="https://www.google.com/maps?q=%C5%81za%20Tattoo%20%26%20Piercing%20Lublin&hl=pl&z=16&output=embed"
+                    className="h-full w-full"
+                    style={{ border: 0 }}
+                    loading="lazy"
+                    allowFullScreen
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+
                   <a
-                    href="https://maps.app.goo.gl/q6ZiNCrBhdhhpLMJ7"
+                    href={GOOGLE_MAPS_URL}
                     target="_blank"
                     rel="noreferrer"
                     className="border-t border-black/10 bg-white px-5 py-4 text-center text-sm uppercase tracking-[0.24em] transition hover:bg-black hover:text-white"
@@ -534,140 +489,8 @@ export default function Home() {
                   </p>
                 </div>
 
-                <form
-  className="grid gap-4"
-  onSubmit={async (e) => {
-    e.preventDefault();
-
-    const form = e.currentTarget as HTMLFormElement & {
-      firstName: { value: string };
-      lastName: { value: string };
-      phone: { value: string };
-      email: { value: string };
-      message: { value: string };
-      privacyConsent: { checked: boolean };
-    };
-
-    const firstName = form.firstName.value.trim();
-    const lastName = form.lastName.value.trim();
-    const phone = form.phone.value.trim();
-    const email = form.email.value.trim();
-    const message = form.message.value.trim();
-    const privacyConsent = form.privacyConsent.checked;
-
-    if (!privacyConsent) {
-      alert("Zaznacz zgodę na przetwarzanie danych.");
-      return;
-    }
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          firstName,
-          lastName,
-          phone,
-          email,
-          message,
-        }),
-      });
-
-      const result = await res.json();
-
-      if (result.ok) {
-        alert("Wiadomość została wysłana.");
-        form.reset();
-      } else {
-        alert(result.error || "Błąd podczas wysyłania wiadomości.");
-      }
-    } catch (error) {
-      alert("Błąd połączenia z serwerem.");
-      console.error(error);
-    }
-  }}
->
-  <div className="grid gap-4 md:grid-cols-2">
-    <input
-      name="firstName"
-      className="border border-black/10 bg-white px-4 py-3 outline-none placeholder:text-black/35"
-      placeholder="Imię"
-      required
-    />
-    <input
-      name="lastName"
-      className="border border-black/10 bg-white px-4 py-3 outline-none placeholder:text-black/35"
-      placeholder="Nazwisko"
-      required
-    />
-  </div>
-
-  <div className="grid gap-4 md:grid-cols-2">
-    <input
-      name="phone"
-      type="tel"
-      className="border border-black/10 bg-white px-4 py-3 outline-none placeholder:text-black/35"
-      placeholder="Telefon"
-      required
-    />
-    <input
-      name="email"
-      type="email"
-      className="border border-black/10 bg-white px-4 py-3 outline-none placeholder:text-black/35"
-      placeholder="Adres e-mail"
-      required
-    />
-  </div>
-
-  <textarea
-    name="message"
-    className="min-h-[160px] border border-black/10 bg-white px-4 py-3 outline-none placeholder:text-black/35"
-    placeholder="Wiadomość"
-    required
-  />
-
-  <div className="mt-1 bg-[#252b3a] px-6 py-6 text-white">
-    <div className="space-y-4">
-      <label className="flex items-start gap-3 text-sm leading-6 text-white">
-        <input
-          type="checkbox"
-          name="privacyConsent"
-          className="mt-1 h-4 w-4 rounded border-white text-neutral-900 focus:ring-neutral-900"
-          required
-        />
-        <span>
-          Zapoznałem/am się z{" "}
-          <a
-            href="/polityka-prywatnosci"
-            className="underline underline-offset-2 hover:opacity-70"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Polityką prywatności
-          </a>{" "}
-          i wyrażam zgodę na przetwarzanie moich danych osobowych w celu obsługi
-          zapytania przesłanego przez formularz kontaktowy.
-        </span>
-      </label>
-
-      <p className="text-xs leading-5 text-white/70">
-        Administratorem danych jest ŁZA TATTOO & PIERCING. Dane podane w formularzu
-        będą przetwarzane wyłącznie w celu odpowiedzi na wiadomość i kontaktu w
-        sprawie rezerwacji lub zapytania.
-      </p>
-    </div>
-
-    <button
-      type="submit"
-      className="mt-6 w-full border border-white/20 bg-transparent px-6 py-4 text-center text-sm uppercase tracking-[0.24em] text-white transition hover:bg-white hover:text-[#252b3a]"
-    >
-      Wyślij zgłoszenie
-    </button>
-  </div>
-</form>
-</div>
+                <ContactForm />
+              </div>
             </div>
           </div>
         </section>

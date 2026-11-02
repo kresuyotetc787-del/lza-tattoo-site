@@ -1,5 +1,6 @@
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
+import { STATIC_ROUTES } from "../../lib/routes";
 
 /**
  * Endpoint odświeżający cache stron, na których pojawiają się wpisy bloga.
@@ -15,16 +16,8 @@ import { NextResponse } from "next/server";
  * Bez niej endpoint nie zrobi nic.
  */
 
-// Ścieżki zależne od tego, które wpisy są już opublikowane.
-const PATHS = [
-  "/blog",
-  "/tatuaz-lublin",
-  "/piercing-lublin",
-  "/tatuaz-rekaw-lublin",
-  "/przekluwanie-uszu-lublin",
-  "/tatuaz-piercing-lublin-okolice",
-  "/sitemap.xml",
-];
+// Wszystkie podstrony (mogą linkować do wpisów) + mapa strony.
+const PATHS = [...STATIC_ROUTES.map((route) => route.path), "/sitemap.xml"];
 
 export async function GET(request: Request) {
   const secret = process.env.CRON_SECRET;

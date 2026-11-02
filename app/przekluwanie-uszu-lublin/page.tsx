@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import ContentBlocks from "../components/ContentBlocks";
 import ContactCta from "../components/ContactCta";
+import Link from "next/link";
 import PageShell from "../components/PageShell";
+import PriceTable from "../components/PriceTable";
+import WorksGallery from "../components/WorksGallery";
+import { GALLERY } from "../lib/artists";
+import { CENNIK_PIERCINGU } from "../lib/cennik";
 import JsonLd, { SITE_URL, faqSchema, studioSchema } from "../components/JsonLd";
 import { postInline } from "../lib/blog";
 import type { Block } from "../lib/blog/types";
@@ -117,7 +122,7 @@ const blocks: Block[] = [
     type: "p",
     content: [
       "Pracujemy na umówione wizyty, dzięki czemu masz zarezerwowany czas bez pośpiechu. Termin możesz wybrać przez ",
-      { text: "formularz kontaktowy", href: "/#booking" },
+      { text: "formularz kontaktowy", href: "/rezerwacja-kontakt#formularz" },
       ", zadzwonić pod numer 733 625 594 lub wysłać wiadomość na lezkatattoo@gmail.com. Studio jest czynne od poniedziałku do piątku w godzinach 9:00-17:00 oraz w soboty 9:00-15:00.",
     ],
   },
@@ -148,6 +153,27 @@ export default function PrzekluwanieUszuLublinPage() {
       lead="Przekłuwanie uszu to jeden z najczęściej wybieranych zabiegów w naszym studiu - od klasycznego przekłucia płatka, przez piercing chrząstki w Lublinie, po zestawy kilku kolczyków w jednym uchu. ŁZA TATTOO & PIERCING to studio piercingu w Lublinie przy ul. Prezydenta Gabriela Narutowicza 22, w którym zabieg wykonuje doświadczona osoba, w sterylnych warunkach i bez pośpiechu."
     >
       <ContentBlocks blocks={blocks} />
+
+      <WorksGallery
+        title="Przekłucia uszu wykonane w naszym studiu"
+        works={GALLERY.uszy}
+        caption="Industrial, helix, conch i kompozycje kolczyków w płatku."
+      />
+
+      <h2 className="mt-12 text-2xl uppercase tracking-wide md:text-3xl">
+        Ile kosztuje przekłucie ucha?
+      </h2>
+      <PriceTable
+        items={CENNIK_PIERCINGU.find((group) => group.id === "ucho")!.items.slice(0, 18)}
+        caption="Cennik przekłuwania uszu"
+      />
+      <p className="mt-4 text-lg leading-8 text-black/85">
+        Pakiety kilku przekłuć i pozostałe zabiegi znajdziesz w{" "}
+        <Link href="/cennik#ucho" className="underline underline-offset-4 hover:opacity-60">
+          pełnym cenniku
+        </Link>
+        .
+      </p>
 
       <ContactCta>
         <p>

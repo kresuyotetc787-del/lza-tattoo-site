@@ -1,68 +1,20 @@
 import type { MetadataRoute } from "next";
-import { SITE_URL } from "./components/JsonLd";
+import { SITE_URL } from "./lib/site";
+import { STATIC_ROUTES } from "./lib/routes";
 import { getPublishedPosts } from "./lib/blog";
 
 // Mapa strony odświeża się co godzinę, więc zaplanowany wpis trafia
 // do niej automatycznie w dniu publikacji.
 export const revalidate = 3600;
 
+// Podstrony bierzemy z app/lib/routes.ts, wpisy - z listy bloga.
+// Nic nie trzeba dopisywać ręcznie w tym pliku.
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages: MetadataRoute.Sitemap = [
-    { url: SITE_URL, changeFrequency: "monthly", priority: 1 },
-    {
-      url: `${SITE_URL}/tatuaz-lublin`,
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/piercing-lublin`,
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/tatuaz-rekaw-lublin`,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${SITE_URL}/przekluwanie-uszu-lublin`,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${SITE_URL}/tatuaz-piercing-lublin-okolice`,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${SITE_URL}/piercing-swidnik`,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${SITE_URL}/piercing-zamosc`,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${SITE_URL}/piercing-chelm`,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${SITE_URL}/piercing-krasnik`,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${SITE_URL}/piercing-lubartow`,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    { url: `${SITE_URL}/blog`, changeFrequency: "weekly", priority: 0.7 },
-    { url: `${SITE_URL}/polityka-prywatnosci`, priority: 0.1 },
-    { url: `${SITE_URL}/polityka-cookies`, priority: 0.1 },
-  ];
+  const staticPages: MetadataRoute.Sitemap = STATIC_ROUTES.map((route) => ({
+    url: route.path === "/" ? `${SITE_URL}/` : `${SITE_URL}${route.path}`,
+    changeFrequency: route.changeFrequency,
+    priority: route.priority,
+  }));
 
   const postPages: MetadataRoute.Sitemap = getPublishedPosts().map((post) => ({
     url: `${SITE_URL}/blog/${post.slug}`,

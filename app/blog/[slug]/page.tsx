@@ -4,17 +4,21 @@ import ContentBlocks from "../../components/ContentBlocks";
 import ContactCta from "../../components/ContactCta";
 import PageShell from "../../components/PageShell";
 import JsonLd, { SITE_URL, faqSchema, studioSchema } from "../../components/JsonLd";
-import { formatDate, getAllSlugs, getPublishedPost } from "../../lib/blog";
+import { formatDate, getPublishedPost, getPublishedPosts } from "../../lib/blog";
 
 // Wpis zaplanowany na przyszłość zwraca 404 aż do swojej daty publikacji.
 // Odświeżanie co godzinę sprawia, że wchodzi na stronę sam.
 export const revalidate = 3600;
 
-// Trasy znane są od razu dla wszystkich wpisów w repozytorium, także
-// tych zaplanowanych - inaczej pierwsze wejście po dacie publikacji
-// musiałoby czekać na render on-demand.
+// Przy budowaniu generujemy tylko wpisy już opublikowane. Wpis zaplanowany
+// renderuje się na żądanie przy pierwszym wejściu po dacie publikacji
+// (dynamicParams = true). Wcześniej prerenderowaliśmy też zaplanowane wpisy -
+// zapisana w cache strona 404 potrafiła wisieć dłużej niż lista na /blog,
+// przez co blog linkował do wpisu, który zwracał 404.
+export const dynamicParams = true;
+
 export function generateStaticParams() {
-  return getAllSlugs().map((slug) => ({ slug }));
+  return getPublishedPosts().map((post) => ({ slug: post.slug }));
 }
 
 type Props = { params: Promise<{ slug: string }> };
@@ -55,6 +59,8 @@ export default async function BlogPostPage({ params }: Props) {
     >
       <div className="text-[11px] uppercase tracking-[0.24em] text-black/45">
         <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
+        <span aria-hidden> · </span>
+        <span>Autor: zespół ŁZA TATTOO &amp; PIERCING</span>
       </div>
 
       <article className="mt-2">
@@ -80,7 +86,12 @@ export default async function BlogPostPage({ params }: Props) {
             datePublished: post.publishedAt,
             inLanguage: "pl-PL",
             mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
-            author: { "@id": `${SITE_URL}/#studio` },
+            author: {
+              "@type": "Organization",
+              "@id": `${SITE_URL}/#studio`,
+              name: "ŁZA TATTOO & PIERCING",
+              url: `${SITE_URL}/artysci`,
+            },
             publisher: { "@id": `${SITE_URL}/#studio` },
           },
           ...(faq ? [faqSchema(faq.items)] : []),

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display } from "next/font/google";
 import "./globals.css";
 import CookieBanner from "./components/CookieBanner";
+import { SITE_URL } from "./lib/site";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -9,7 +10,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://lzatattoo.pl"),
+  metadataBase: new URL(SITE_URL),
   title: "Tatuaż i piercing Lublin - Studio ŁZA TATTOO & PIERCING",
   description:
     "Studio tatuażu i piercingu w Lublinie. Indywidualne projekty, sterylne warunki i doświadczony zespół artystów. Umów konsultację - ul. Narutowicza 22.",
@@ -22,12 +23,11 @@ export const metadata: Metadata = {
     "piercer lublin",
     "salon tatuażu lublin",
   ],
-  alternates: { canonical: "/" },
   openGraph: {
     title: "Tatuaż i piercing Lublin - Studio ŁZA TATTOO & PIERCING",
     description:
       "Studio tatuażu i piercingu w Lublinie. Indywidualne projekty, sterylne warunki i doświadczony zespół artystów.",
-    url: "https://lzatattoo.pl",
+    url: SITE_URL,
     siteName: "ŁZA TATTOO & PIERCING",
     locale: "pl_PL",
     type: "website",

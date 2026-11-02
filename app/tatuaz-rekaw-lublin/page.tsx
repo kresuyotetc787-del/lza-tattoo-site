@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import ContentBlocks from "../components/ContentBlocks";
 import ContactCta from "../components/ContactCta";
 import PageShell from "../components/PageShell";
+import WorksGallery from "../components/WorksGallery";
+import { GALLERY } from "../lib/artists";
 import JsonLd, { SITE_URL, faqSchema, studioSchema } from "../components/JsonLd";
 import { postInline } from "../lib/blog";
 import type { Block } from "../lib/blog/types";
@@ -138,7 +140,7 @@ const blocks: Block[] = [
     type: "p",
     content: [
       "Nie musisz mieć gotowego projektu - wystarczy pomysł. Napisz do nas przez ",
-      { text: "formularz kontaktowy", href: "/#booking" },
+      { text: "formularz kontaktowy", href: "/rezerwacja-kontakt#formularz" },
       ", zadzwoń pod numer 733 625 594 lub wyślij wiadomość na lezkatattoo@gmail.com, a pomożemy dobrać artystę i termin konsultacji. Studio znajdziesz przy ul. Prezydenta Gabriela Narutowicza 22 w Lublinie. Jeśli dojeżdżasz z innej miejscowości, ",
       {
         text: "tutaj sprawdzisz, jak zaplanować wizytę",
@@ -161,6 +163,12 @@ export default function TatuazRekawLublinPage() {
       lead="Tatuaż rękaw to jedno z największych wyzwań w pracy tatuażysty i jednocześnie jedna z najbardziej efektownych realizacji. To nie pojedynczy wzór, tylko spójna kompozycja obejmująca całą rękę lub jej dużą część, która powstaje na przestrzeni kilku sesji. W ŁZA TATTOO & PIERCING, studiu tatuażu w Lublinie, podchodzimy do niej tak, jak do każdego większego projektu: najpierw rozmowa, potem projekt, a dopiero na końcu pierwsza kreska."
     >
       <ContentBlocks blocks={blocks} />
+
+      <WorksGallery
+        title="Rękawy i duże projekty z naszego studia"
+        works={GALLERY.rekaw}
+        caption="Dark realizm, kolorowy realizm i black & grey na przedramionach i ramionach."
+      />
 
       <ContactCta>
         <p>

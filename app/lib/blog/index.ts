@@ -9,6 +9,8 @@ import czyTatuazBoli from "./posts/czy-tatuaz-boli";
 import jakPrzygotowacSieDoTatuazu from "./posts/jak-przygotowac-sie-do-tatuazu";
 import pierwszyTatuazJakiWybrac from "./posts/pierwszy-tatuaz-jaki-wybrac";
 import ileKosztujeTatuaz from "./posts/ile-kosztuje-tatuaz";
+import tatuazMeskiPomysly from "./posts/tatuaz-meski-pomysly";
+import tatuazDamskiPomysly from "./posts/tatuaz-damski-pomysly";
 
 /**
  * JAK DODAĆ NOWY WPIS
@@ -44,6 +46,8 @@ const allPosts: Post[] = [
   jakPrzygotowacSieDoTatuazu,
   pierwszyTatuazJakiWybrac,
   ileKosztujeTatuaz,
+  tatuazMeskiPomysly,
+  tatuazDamskiPomysly,
 ];
 
 function isPublished(post: Post, now: number): boolean {
@@ -65,14 +69,6 @@ export function getPublishedPosts(): Post[] {
 export function getPublishedPost(slug: string): Post | undefined {
   const now = Date.now();
   return allPosts.find((post) => post.slug === slug && isPublished(post, now));
-}
-
-/**
- * Wszystkie slugi, także zaplanowane. Używane wyłącznie przez
- * generateStaticParams, żeby Next znał trasę zanim wpis wejdzie na stronę.
- */
-export function getAllSlugs(): string[] {
-  return allPosts.map((post) => post.slug);
 }
 
 /**

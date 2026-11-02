@@ -168,7 +168,7 @@ const post: Post = {
         "Czas na sesję? ",
         { text: "Tatuaż w Lublinie", href: "/tatuaz-lublin" },
         " wykonujemy w studiu ŁZA TATTOO & PIERCING przy ul. Prezydenta Gabriela Narutowicza 22. Napisz do nas przez ",
-        { text: "formularz kontaktowy", href: "/#booking" },
+        { text: "formularz kontaktowy", href: "/rezerwacja-kontakt#formularz" },
         " lub zadzwoń pod numer 733 625 594, a pomożemy dobrać artystę i termin.",
       ],
     },
