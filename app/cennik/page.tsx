@@ -49,7 +49,7 @@ const faqItems = [
   },
   {
     q: "Ile kosztuje tatuaż?",
-    a: "Tatuaże wyceniamy indywidualnie, bo cena zależy od wielkości, kolorystyki, stopnia szczegółowości i miejsca na ciele. Opisz swój pomysł przez formularz kontaktowy albo zadzwoń - podamy widełki i zaproponujemy termin konsultacji.",
+    a: "Tatuaże wyceniamy indywidualnie, bo cena zależy od wielkości, kolorystyki, stopnia szczegółowości i miejsca na ciele. Opisz swój pomysł przez formularz kontaktowy albo zadzwoń - podamy widełki i zaproponujemy termin konsultacji. Konsultacje tatuażu są darmowe.",
   },
   {
     q: "Od ilu lat można zrobić piercing?",

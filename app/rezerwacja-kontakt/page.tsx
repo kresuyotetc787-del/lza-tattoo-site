@@ -35,8 +35,16 @@ const faqItems = [
     a: "Tak. Tatuaż poprzedzamy konsultacją, na której ustalamy projekt, rozmiar i wycenę.",
   },
   {
+    q: "Czy konsultacja tatuażu jest płatna?",
+    a: "Nie, konsultacje tatuażu są darmowe.",
+  },
+  {
     q: "Czy mogę przyjść na piercing bez rezerwacji?",
     a: "Zalecamy rezerwację online, bo w kalendarzu od razu widać wolne terminy.",
+  },
+  {
+    q: "Jak szybko odpowiadacie na wiadomości?",
+    a: "Odpowiadamy na wiadomości zazwyczaj w ciągu 1-2 dni. Najszybciej złapiesz nas telefonicznie w godzinach otwarcia.",
   },
   {
     q: "Czy mogę umówić się poza godzinami otwarcia?",
@@ -125,7 +133,8 @@ export default function RezerwacjaKontaktPage() {
 
       <p className={p}>
         Studio znajduje się w centrum, dlatego dojedziesz do nas komunikacją
-        miejską lub samochodem.{" "}
+        miejską lub samochodem. Najbliższy przystanek to Mościckiego 02, a
+        samochód zaparkujesz w okolicznych uliczkach.{" "}
         Jeśli przyjeżdżasz spoza Lublina, zajrzyj na stronę{" "}
         <Link href="/tatuaz-piercing-lublin-okolice" className={link}>
           dojazd z okolic do studia
@@ -149,7 +158,7 @@ export default function RezerwacjaKontaktPage() {
 
       <h2 className={h2}>Jak umówić wizytę na tatuaż?</h2>
       <p className={p}>
-        Na tatuaż najpierw umawiamy konsultację. Opisz pomysł, wskaż miejsce na
+        Na tatuaż najpierw umawiamy konsultację - jest darmowa. Opisz pomysł, wskaż miejsce na
         ciele i dołącz inspiracje, a my dobierzemy artystę i zaproponujemy
         termin. Możesz zrobić to przez formularz poniżej, telefonicznie, e-mailem
         lub przez wiadomość na Instagramie. Zanim napiszesz, możesz przejrzeć{" "}

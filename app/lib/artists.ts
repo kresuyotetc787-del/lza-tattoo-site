@@ -35,8 +35,10 @@ export const ARTISTS: Artist[] = [
   {
     handle: "piercinglbn",
     displayName: "Piercing LBN",
+    name: "Marcin",
     role: "Piercer",
     styles: ["piercing uszu", "piercing nosa", "industrial", "piercing chrząstki"],
+    bio: "Piercer z 12-letnim stażem, jeden z najdłużej działających na Lubelszczyźnie. Regularnie poszerza wiedzę na kursach.",
     photo: {
       src: "/images/artists/piercinglbn.jpg",
       alt: `Piercer Piercing LBN podczas przekłuwania w studiu ${STUDIO}`,
@@ -70,8 +72,10 @@ export const ARTISTS: Artist[] = [
   {
     handle: "ilotattoo",
     displayName: "ilotattoo",
+    name: "Ilona",
     role: "Tatuażystka",
-    styles: ["kolorowy realizm", "postacie z komiksów i kreskówek", "watercolor"],
+    styles: ["styl graficzny", "szkicowy z dodatkiem koloru", "kolorowy realizm"],
+    bio: "Magister grafiki z ponad 15-letnim doświadczeniem. Tatuuje w stylu graficznym i szkicowym z dodatkiem koloru oraz w kolorowym realizmie.",
     photo: {
       src: "/images/artists/ilotattoo.jpg",
       alt: `Tatuażystka ilotattoo przy pracy w studiu ${STUDIO}`,
@@ -169,8 +173,10 @@ export const ARTISTS: Artist[] = [
   {
     handle: "maxovod",
     displayName: "maxovod",
+    name: "Max",
     role: "Tatuażysta",
-    styles: ["dark realizm", "black & grey", "duże projekty - rękawy i plecy"],
+    styles: ["dark graphic", "black & grey", "oriental / styl japoński", "oldschool"],
+    bio: "Artysta po szkole plastycznej, który przykłada dużą wagę do kompozycji i anatomii. Specjalizuje się w Dark Graphic i Black and Grey (mroczna grafika, głębokie kontrasty) oraz w stylu orientalnym, japońskim i Oldschool (mocne kontury, trwałość).",
     photo: {
       src: "/images/artists/maxovod.jpg",
       alt: `Tatuażysta maxovod podczas tatuowania w studiu ${STUDIO}`,
