@@ -14,6 +14,10 @@ const faqItems = [
     a: "Tak. Napisz lub zadzwoń, opisz pomysł i dołącz inspiracje. Orientacyjne widełki podajemy po zapoznaniu się z projektem.",
   },
   {
+    q: "Czy pierwsza konsultacja jest płatna?",
+    a: "Nie. W naszym studiu konsultacje tatuażu są darmowe.",
+  },
+  {
     q: "Czy cena obejmuje poprawki?",
     a: "To zależy od studia, dlatego zapytaj o zasady poprawek przed rezerwacją.",
   },
